@@ -14,7 +14,6 @@ import com.bridgelabz.utils.Utility;
 public class LeapYear {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Enter the year to check whether leap year or not:- ");
 		int year = Utility.integerInput();
 		Utility.leapYearChecker(year);

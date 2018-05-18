@@ -126,7 +126,6 @@ public class Utility {
 				System.out.println(year + "is not a leap year");
 		}
 		else {
-			System.out.print("Enter valid year ");
 			scanner.nextLine();
 			leapYearChecker(integerInput());
 		}
@@ -149,11 +148,18 @@ public class Utility {
 	 * @param value to store the value of Nth harmonic number
 	 * @return double value containing harmonic number
 	 *****************************************************************************/
-	public static double harmonicValue(int n) {
+	public static void harmonicValue(int n) {
 		double value = 0.0;
-		for (int i = 1; i <= n; i++)
-			value += (double) 1 / i;
-		return value;
+		if(n>0) {
+			for (int i = 1; i <= n; i++)
+				value += (double) 1 / i;
+				System.out.println("The " + n + "th harmonic value is " + value);
+		}
+		else {
+			System.out.println("Invalid input, enter a positive number");
+			scanner.nextLine();
+			harmonicValue(integerInput());
+		}
 	}
 
 	/******************************************************************************
