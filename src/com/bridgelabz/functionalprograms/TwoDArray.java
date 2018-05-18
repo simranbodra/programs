@@ -14,7 +14,6 @@ import com.bridgelabz.utils.Utility;
 public class TwoDArray {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Enter the number of rows:-");
 		int noOfRows = Integer.parseInt(Utility.stringInput());
 		System.out.println("Enter the number of columns:-");

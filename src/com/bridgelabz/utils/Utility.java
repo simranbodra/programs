@@ -241,7 +241,6 @@ public class Utility {
 				array[i][j] = stringInput();
 			}
 		}
-		
 		for(Object[] arr : array) {
 			for(Object a : arr) {
 				writer.print(a.toString()+ "  ");
@@ -249,8 +248,53 @@ public class Utility {
 			}
 			writer.println();
 		}
-				
-
+	}
+	
+	/*************************************************************************
+	 * Function to find distinct triplets which gives the sum as 0 
+	 * 
+	 * @param array to store the elements in an array
+	 * @param count to keep the count of such triplets
+	 **********************************************************************/
+	public static void getDistinctTriplets(int noOfElements) {
+		int[] array = new int[noOfElements];
+		int count = 0;
+		System.out.println("Enter the elements:-");
+		for(int i=0; i<noOfElements; i++) {
+			array[i] = integerInput();
+		}
+		for(int i=0;i<noOfElements-2;i++) {
+			for(int j=i+1;j<noOfElements-1;j++) {
+				for(int k=j+1;k<noOfElements;k++) {
+					if(array[i]+array[j]+array[k] == 0) {
+						System.out.print("[" + array[i] + ",");
+						System.out.print(array[j] + ",");
+						System.out.println(array[k] + "]");
+						count++;
+					}
+				}
+			}
+		}
+		if(count == 0) {
+			System.out.println("No such triplet exits");
+		}
+		else {
+			System.out.println("There are " + count + " number of triplets ");
+		}
+	}
+	
+	
+	/*************************************************************************
+	 * Function to find the Eculidean Distance from the given (x,y) co-ordinates
+	 * 
+	 * @param x to store the value of x co-ordinate
+	 * @param y to store the value of y co-ordinate
+	 **********************************************************************/
+	public static double getEculideanDistance(String xCoordinate, String yCoordinate) {
+		int x = Integer.parseInt(xCoordinate);
+		int y = Integer.parseInt(yCoordinate);
+		double distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2),0.5);
+		return distance;
 	}
 
 }

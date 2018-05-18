@@ -14,7 +14,6 @@ import com.bridgelabz.utils.Utility;
 public class GambleGame {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Enter the stake:-");
 		int stake = Utility.integerInput();
 		System.out.println("Enter Goal:-");

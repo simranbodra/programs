@@ -1,24 +1,22 @@
 /******************************************************************************
  *  
- *  Purpose: to print the harmonic value of Nth number
+ *  Purpose: to print the distinct triplets which gives the sum zero
  *
  *  @author  Simran Bodra
  *  @version 1.0
- *  @since   17-05-2018
+ *  @since   18-05-2018
  *
  ******************************************************************************/
 package com.bridgelabz.functionalprograms;
 
 import com.bridgelabz.utils.Utility;
 
-public class Harmonic {
+public class DistinctTriplets {
 
 	public static void main(String[] args) {
-		System.out.println("Enter the value of N to get Nth harmonic number:-");
-		String n = Utility.stringInput();
-		int times = Utility.integerInput();
-		System.out.println("Nth Harmonic number is " + Utility.harmonicValue(times));
-		
+		System.out.println("Enter the number of integers:-");
+		int noOfElements = Utility.integerInput();
+		Utility.getDistinctTriplets(noOfElements);
 
 	}
 
