@@ -16,8 +16,8 @@ public class Harmonic {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Enter the value of N to get Nth harmonic number:-");
-		String n = Utility.input();
-		int times = Integer.parseInt(n);
+		String n = Utility.stringInput();
+		int times = Utility.integerInput();
 		System.out.println("Nth Harmonic number is " + Utility.harmonicValue(times));
 		
 

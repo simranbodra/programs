@@ -17,7 +17,7 @@ public class Template {
 		// TODO Auto-generated method stub
 		System.out.println("Enter username:-");
 		// @param string username to take input from the user.
-		String username = Utility.input();
+		String username = Utility.stringInput();
 		// @param string propername to get the replaced template
 		String propername = Utility.replaceTemplate(username);
 		System.out.println(propername);

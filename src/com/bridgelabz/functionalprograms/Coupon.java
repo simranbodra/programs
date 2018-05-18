@@ -14,9 +14,8 @@ import com.bridgelabz.utils.Utility;
 public class Coupon {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		System.out.println("Enter the number of coupon number to be generated:-");
-		int noOfCoupons = Integer.parseInt(Utility.input());
+		int noOfCoupons = Utility.integerInput();
 		Utility.couponGenerator(noOfCoupons);
 
 	}

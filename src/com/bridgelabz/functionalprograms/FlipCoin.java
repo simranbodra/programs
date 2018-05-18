@@ -16,7 +16,7 @@ public class FlipCoin {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Enter number of time to flip coin:-");
-		int noOfTimes = Integer.parseInt(Utility.input());
+		int noOfTimes = Utility.integerInput();
 		Utility.flipCoinPercentage(noOfTimes);
 
 	}

@@ -16,8 +16,8 @@ public class PrimeFactor {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Enter the number:-");
-		String input = Utility.input();
-		int number = Integer.parseInt(input);
+		String input = Utility.stringInput();
+		int number = Utility.integerInput();
 		Utility.primeFactorsOfNumber(number);
 		
 	}

@@ -16,11 +16,11 @@ public class GambleGame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Enter the stake:-");
-		int stake = Integer.parseInt(Utility.input());
+		int stake = Utility.integerInput();
 		System.out.println("Enter Goal:-");
-		int goal = Integer.parseInt(Utility.input());
+		int goal = Utility.integerInput();
 		System.out.println("Enter the number of times you want to bet:-");
-		int noOfBets = Integer.parseInt(Utility.input());
+		int noOfBets = Utility.integerInput();
 		Utility.winLossPercentage(stake,goal,noOfBets);
 
 	}
