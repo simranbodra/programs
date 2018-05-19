@@ -394,9 +394,21 @@ public class Utility {
 		double root1 = (-b + Math.pow(discriminant, 0.5))/(2*a);
 		double root2 = (-b - Math.pow(discriminant, 0.5))/(2*a);
 		System.out.println("First root for " + a + "x*x" + b + "x" + c + " is " + root1);
-		System.out.println("SEcond root for " + a + "x*x" + b + "x" + c + " is " + root2);
+		System.out.println("Second root for " + a + "x*x" + b + "x" + c + " is " + root2);
 
 		
+	}
+	
+	/*************************************************************************
+	 * Function to find the roots of the given quadratic equation  
+	 * 
+	 * @param 
+	 **********************************************************************/
+	public static void displayBoard() {
+		String[][] matrix = new String[3][3];
+		for(int i=0;i<3;i++) {
+			
+		}
 	}
 	
 }
