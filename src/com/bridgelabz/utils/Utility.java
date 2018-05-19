@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.io.PrintWriter;
 import java.io.OutputStreamWriter;
+import java.time.LocalTime;
 
 public class Utility {
 
@@ -302,5 +303,100 @@ public class Utility {
 		double distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2),0.5);
 		return distance;
 	}
+	
+	/*************************************************************************
+	 * Function to call recursive permutation method
+	 * 
+	 **********************************************************************/
+	public static void permutationFinder(String str) {
+		permutation("",str);
+	}
 
+	/*************************************************************************
+	 * Function to print the String permutation 
+	 * 
+	 * @param n to store the length of the String
+	 * @param prefix to store the STring permutation formed
+	 **********************************************************************/
+	public static void permutation(String prefix, String str) {
+		int n = str.length();
+		if(n == 0) {
+			System.out.println(prefix);
+		}
+		else {
+			for(int i=0; i<n; i++) {
+	            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+			}
+		}
+	}
+	
+	/*************************************************************************
+	 * Function to get the current time in milliseconds
+	 * 
+	 * @param startTime to store the current time
+	 * @return long value with current time in milliseconds
+	 **********************************************************************/
+	public static long startTimer(int start) {
+		long startTime = 0;
+		if(start == 1) {
+			startTime = System.currentTimeMillis();
+			return startTime;
+		}
+		else 
+			return 0;
+	}
+	
+	/*************************************************************************
+	 * Function to print the elapsed time 
+	 * 
+	 * @param stopTime to store the current time
+	 * @param elapsedTime to store the difference between the start time and stop time
+	 **********************************************************************/
+	public static void stopTimer(int stop, long startTime) {
+		long stopTime = 0;
+		if(stop == 2) {
+			stopTime = System.currentTimeMillis();
+		}
+		long elapsedTime = stopTime - startTime;
+		long seconds = elapsedTime/1000;
+		System.out.println(seconds);
+	}
+	
+	/*************************************************************************
+	 * Function to print the effective temperature  
+	 * 
+	 * @param temp to store the given temperature
+	 * @param v to store the given velocity
+	 * @param effTemperature to store the calculated effective temperature
+	 **********************************************************************/
+	public static void effectiveTemperature(String temperature, String velocity) {
+		double temp = Double.parseDouble(temperature);
+		double v = Double.parseDouble(velocity);
+		if(temp<=50 && v<=120 && v>=3) {
+			double effTemp = 35.74 + (0.6215 * temp) + (((0.4275 * temp) - 35.75) * Math.pow(v, 0.16));
+			System.out.println("Measured wind chill is " + effTemp);
+		}
+		else {
+			System.out.println("Enter temperature below 50 and velocity within range 3 to 120");
+			effectiveTemperature(stringInput(), stringInput());
+		}
+	}	
+	
+	/*************************************************************************
+	 * Function to find the roots of the given quadratic equation  
+	 * 
+	 * @param discriminant to store the discriminate for the given equation
+	 * @param root1 to store the first root of the equation
+	 * @param root2 to store the second root of the equation
+	 **********************************************************************/
+	public static void getRoots(int a, int b, int c) {
+		double discriminant = Math.pow(b, 2) - 4*a*c;
+		double root1 = (-b + Math.pow(discriminant, 0.5))/(2*a);
+		double root2 = (-b - Math.pow(discriminant, 0.5))/(2*a);
+		System.out.println("First root for " + a + "x*x" + b + "x" + c + " is " + root1);
+		System.out.println("SEcond root for " + a + "x*x" + b + "x" + c + " is " + root2);
+
+		
+	}
+	
 }
