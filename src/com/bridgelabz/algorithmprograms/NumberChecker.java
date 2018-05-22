@@ -1,6 +1,6 @@
 /******************************************************************************
  *  
- *  Purpose: to guess the number within the given range 
+ *  Purpose: to find the prime number which is anagram and palindrom between 0 to 1000
  *
  *  @author  Simran Bodra
  *  @version 1.0
@@ -11,13 +11,11 @@ package com.bridgelabz.algorithmprograms;
 
 import com.bridgelabz.utils.Utility;
 
-public class GuessGame {
+public class NumberChecker {
 
 	public static void main(String[] args) {
-		int range = Integer.parseInt(args[0]);
-		System.out.println("Think of a number in between 0 to " + range);
-		System.out.println("Let's start the game......");
-		Utility.getGuessNumber(range);
+		System.out.println("The number prime number between 0 to 1000 which are anagram and palindrom are:- ");
+		Utility.checkNumber();
 	}
 
 }

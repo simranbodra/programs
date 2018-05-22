@@ -1,12 +1,3 @@
-/******************************************************************************
- *  
- *  Purpose: to check the efficiency of different sorting and searching technique
- *
- *  @author  Simran Bodra
- *  @version 1.0
- *  @since   21-05-2018
- *
- ******************************************************************************/
 package com.bridgelabz.algorithmprograms;
 
 import com.bridgelabz.utils.Utility;
@@ -14,15 +5,14 @@ import com.bridgelabz.utils.Utility;
 public class SortSearchEfficiency {
 
 	public static void main(String[] args) {
-		// int[] array = Utility.createIntegerArray();
-		// Utility.integerBinarySearch(array);
-		// Utility.integerInsertionSort();
-		// Utility.integerBubbleSort();
-		String string = Utility.stringInput();
-		//Utility.stringBinarySearch(string);
-		//Utility.stringInsertionSort(string);
-		Utility.stringBubbleSort(string);
-		
-	}
+		System.out.println("Enter the number of elements to store:-");
+		int noOfElements = Integer.parseInt(Utility.stringInput());
+		//Utility.createObjectArray(noOfElements);
+		//Utility.bubbleSort(Utility.createObjectArray(noOfElements));
+		//System.out.println("Enter String:-");
+		//Utility.bubbleSort(Utility.createStringArray(Utility.stringInput()));
+		//Utility.insertionSort(Utility.createObjectArray(noOfElements));
+		Utility.binarySearchChecker(Utility.createObjectArray(noOfElements));
 
+	}
 }
