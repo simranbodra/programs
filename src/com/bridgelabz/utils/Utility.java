@@ -763,13 +763,10 @@ public class Utility {
 	}
 	
 	/******************************************************************************
-	* Function to get the monthly payment needed to pay off the loan in given year
-	* with given principle amount with given rate
+	* Function to find the square root of the given number using Newton's method 
 	* 
-	* @param principle to store the principle value 
-	* @param year to store the year value given by the user
-	* @param rate to store the rate entered by the user
-	* @return payment need to pay off loan
+	* @param c stores the number which square root is to be found
+	* @return the square root of the number
 	******************************************************************************/
 	public static double sqrt(int c) {
 		double t=c;
@@ -778,6 +775,24 @@ public class Utility {
 			t = (c/t+t)/2;
 		}
 		return t;
+	}
+	
+	/******************************************************************************
+	* Function to find the square root of the given number using Newton's method 
+	* 
+	* @param c stores the number which square root is to be found
+	* @return the square root of the number
+	******************************************************************************/
+	public static String toBinary(int number) {
+		StringBuffer binaryValue = new StringBuffer();
+		int binary = 0;
+		while(number>1) {
+			binary = number%2;
+			number = number/2;
+			binaryValue.append(binary);
+		}
+		binaryValue.append("1");
+		return binaryValue.reverse().toString();
 	}
 }
 
