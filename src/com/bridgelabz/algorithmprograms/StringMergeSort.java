@@ -1,6 +1,6 @@
 /******************************************************************************
  *  
- *  Purpose: to check the efficiency of different sorting and searching technique
+ *  Purpose: to sort the given String using merge sort technique
  *
  *  @author  Simran Bodra
  *  @version 1.0
@@ -11,18 +11,12 @@ package com.bridgelabz.algorithmprograms;
 
 import com.bridgelabz.utils.Utility;
 
-public class SortSearchEfficiency {
+public class StringMergeSort {
 
 	public static void main(String[] args) {
-		//int[] array = Utility.createIntegerArray();
-		//Utility.integerBinarySearchChecker(array);
-		//Utility.integerInsertionSort();
-		//Utility.integerBubbleSort();
+		System.out.println("Enter the String:-");
 		String string = Utility.stringInput();
-		Utility.stringBinarySearch(string);
-		//Utility.stringInsertionSort(string);
-		//Utility.stringBubbleSort(string);
-		
+		Utility.stringMergeSort(string);
 	}
 
 }

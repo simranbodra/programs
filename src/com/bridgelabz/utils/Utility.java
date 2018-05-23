@@ -1,15 +1,22 @@
 /******************************************************************************
- *   Purpose: to store all the functions
+ *  
+ *  Purpose: to store all the functions
  *
  *  @author  Simran Bodra
  *  @version 1.0
  *  @since   19-05-2018
+ *
  ******************************************************************************/
 package com.bridgelabz.utils;
 
 import java.util.Scanner;
-
 import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Utility {
 
@@ -17,7 +24,7 @@ public class Utility {
 	 * Static Variable is declared to create static object of Scanner class
 	 */
 	static Scanner scanner = new Scanner(System.in);
-	
+
 	/****************************************************************************************
 	 * Function to take String input from the user
 	 ****************************************************************************************/
@@ -44,32 +51,10 @@ public class Utility {
 		}
 	}
 	
-	
-	/*************************************************************************************
-	 * Function to take convert integer input from the user to Integer Object
-	 **************************************************************************************/
-	public static Integer integerObjectInput()
-	{
-		try
-		{
-			int input = scanner.nextInt();
-			Integer number = new Integer(input);
-			return number;
-		}
-		catch(Exception e)
-		{
-			scanner.nextLine();
-			System.out.println("Invalid input, enter again");
-			return integerInput();
-		}
-	}
-	
 	/*************************************************************************************
 	 * Function to check if the two Strings are anagram or not
 	 * 
-	 * @param s1 to store first string
-	 * @param s2 to store second string
-	 * @return boolean true if two strings are anagram or else return false
+	 * @param s1
 	 **************************************************************************************/
 	public static boolean checkAnagram(String s1, String s2) {
 		StringBuilder string1 = new StringBuilder();
@@ -99,10 +84,10 @@ public class Utility {
 		
 	}
 	
-	
 	/******************************************************************************
 	 * Function to print the prime number between 0 to 1000
 	 * 
+	 * @param 
 	 ******************************************************************************/
 	public static void printPrimeNumber() {
 		for(int i=0; i<=1000; i++) {
@@ -115,9 +100,9 @@ public class Utility {
 	/******************************************************************************
 	 * Function to check if the given number is prime or not 
 	 * 
-	 * @param n to store the number which is to be checked
 	 * @return true if the number is prime and return false if the number is not prime
 	 ******************************************************************************/
+	@SuppressWarnings("unused")
 	public static boolean primeChecker(int n) {
 		if(n==0 || n==1) {
 			return false;
@@ -132,31 +117,10 @@ public class Utility {
 		}
 	}
 	
-
 	/******************************************************************************
-	 * Function to check if the given number is palindrom or not
+	 * Function to print number which is prime,anagram and palindrom or not between 0 to 1000
 	 * 
-	 * @param number to store the number to be checked if palindrom or not 
-	 * @return true if the number is palindrom and return false if the number is not palindrom
-	 ******************************************************************************/
-	public static boolean palindromChecker(int number) {
-		int num = number;
-		int reverseNumber = 0;
-		while(num>0) {
-			reverseNumber = reverseNumber*10 + num%10;
-			num = num/10;
-		}
-		if(number == reverseNumber)
-			return true;
-		else
-			return false;
-	}
-	
-
-	/******************************************************************************
-	 * Function to print number which is prime and palindrom or not between 0 to 1000
-	 * and print Anagram pairs
-	 * 
+	 * @return true if the number is prime and return false if the number is not prime
 	 ******************************************************************************/
 	public static void checkNumber( ) {
 		System.out.println("Prime numbers which are palindrom:-");
@@ -185,6 +149,45 @@ public class Utility {
 		}
 	}
 	
+
+	/******************************************************************************
+	 * Function to print number which is prime,anagram and palindrom or not between 0 to 1000
+	 * 
+	 * @param num to store the given number and check for palindrom
+	 * @param reverseNumber to store the reversed number  
+	 * @return true if the number is palindrom and return false if the number is not palindrom
+	 ******************************************************************************/
+	public static boolean palindromChecker(int number) {
+		int num = number;
+		int reverseNumber = 0;
+		while(num>0) {
+			reverseNumber = reverseNumber*10 + num%10;
+			num = num/10;
+		}
+		if(number == reverseNumber)
+			return true;
+		else
+			return false;
+	}
+	
+	/******************************************************************************
+	 * Function to create the array of user's choice
+	 * 
+	 * @param noOfElements to store the array length to be created
+	 * @param array to store the elements in the array
+	 * @return the integer array created
+	 ******************************************************************************/
+	public static int[] createIntegerArray() {
+		System.out.println("Enter the number of elements you want to store:-");
+		int noOfElements = Utility.integerInput();
+		System.out.println("Enter the elements to be stored:-");
+		int[] array = new int[noOfElements];
+		for(int i=0; i<noOfElements; i++) {
+			array[i] = Utility.integerInput();
+		}
+		return array;
+	}
+	
 	/*************************************************************************
 	 * Function to get the current time in milliseconds
 	 * 
@@ -208,70 +211,62 @@ public class Utility {
 			stopTime = System.nanoTime();
 		return stopTime;
 	}
-
-	/******************************************************************************
-	 * Function to create integer object array
-	 * 
-	 * @param noOfElements to store the length of the array to be created
-	 * @return array created
-	 ******************************************************************************/
-	public static Comparable[] createObjectArray(int noOfElements) {
-		Comparable[] array = new Comparable[noOfElements];
-		System.out.println("Enter the elements");
-		for(int i=0;i<noOfElements;i++) {
-			array[i] = integerObjectInput();
-		}
-		return array;
-	}
-	
-
-	/******************************************************************************
-	 * Function to create string array
-	 * 
-	 * @param noOfElements to store the length of the array to be created
-	 * @return array created
-	 ******************************************************************************/
-	public static String[] createStringArray(String string) {
-		String[] array = string.split(" ");
-		return array;
-	}
-	
 	
 	/******************************************************************************
-	 * Function to perform Bubble sort for an generic array
+	 * Function to track the time taken by binary search technique to 
 	 * 
-	 * @param array to store the integer array to be sorted
+	 * @param searchElement to store the element to be searched in the array
+	 * @param startTime to store the time when the execution starts
+	 * @param to store the index value at which element is present
 	 ******************************************************************************/
-	public static <T extends Comparable <T>> void bubbleSort(T[] array) {
-		
+	public static void integerBinarySearchChecker(int[] array) {
+		System.out.println("Enter the element to be searched:-");
+		int searchElement = integerInput();
+		Arrays.sort(array);
 		long startTime = startTimer();
-		for(int i=0;i<array.length-1;i++) {
-			for(int j=i+1;j<array.length-1-i;j++) {
-				if(array[j].compareTo(array[j+1])>0) {
-					T temp = array[j];
-					array[j] = array[j+1];
-					array[j+1] = temp;
-				}
-			}
-		}
+		int index = integerBinarySearch(array,searchElement,0,array.length-1);
 		long stopTime = stopTimer();
-		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
-		System.out.println("Sorted array :-");
-		for(T n : array) {
-			System.out.println(n);
-		}
+		System.out.println("Time taken for searching is " + (stopTime - startTime) + " nano seconds");
+		if(index == -1) 
+			System.out.println("Elements not present");
+		else
+			System.out.println("Element " + searchElement + " found at position " + (index+1));
 	}
+	
 	/******************************************************************************
-	 * Function to perform insertion sort for an generic array
+	 * Function to search for integer using binary search technique
+	 * 
+	 * @param mid to get the middle index of the array
+	 * @param start to store the starting index of the array
+	 * @param end to store the last index of the array
+	 * @return index value if the element is found or else returns -1 if the element not found
+	 ******************************************************************************/
+	public static int integerBinarySearch(int[] array, int searchElement, int start, int end) {
+		int mid = (start + end)/2;
+		if(array[mid] == searchElement)
+			return mid;
+		else {
+			if(searchElement > array[mid]) 
+				return integerBinarySearch(array, searchElement, mid+1,end);
+			else
+				return integerBinarySearch(array, searchElement, start, mid-1);
+		}
+		
+	} 
+	
+	/******************************************************************************
+	 * Function to perform insertion sort for an integer array
 	 * 
 	 * @param array to store the integer array to be sorted
+	 * @param key to store the element to be compared
 	 ******************************************************************************/
-	public static <T extends Comparable <T>> void insertionSort(T[] array) {
+	public static void integerInsertionSort() {
+		int[] array = createIntegerArray();
 		long startTime = startTimer();
 		for(int i=1; i<array.length; i++) {
-			T key = array[i];
+			int key = array[i];
 			int j = i-1;
-			while(j>=0 && array[j].compareTo(key)>0) {
+			while(j>=0 && array[j]>key) {
 				array[j+1] = array[j];
 				j = j-1;
 			}
@@ -280,22 +275,288 @@ public class Utility {
 		long stopTime = stopTimer();
 		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
 		System.out.println("Sorted array :-");
-		for(T n : array) {
+		for(int n : array) {
 			System.out.println(n);
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to perform bubble sort for an integer array
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static void integerBubbleSort() {
+		int[] array = createIntegerArray();
+		long startTime = startTimer();
+		for(int i=0; i<array.length-1; i++) {
+			for(int j=1;j<array.length-1-i; j++) {
+				if(array[j]>array[j+1]) {
+					int temp = array[j+1];
+					array[j+1] = array[j];
+					array[j] = temp;
+				}
+			}
+		}
+		long stopTime = stopTimer();
+		System.out.println("Time taken for sorting the array using bubble sort technique " + (stopTime-startTime) + " nano seconds");
+		for(int n:array)
+			System.out.println(n);
+	}
+	
+
+	/******************************************************************************
+	 * Function to split the given string by spaces
+	 * 
+	 * @param stringArray to store the splited string elements in the array
+	 * @return array of string type
+	 ******************************************************************************/
+	public static String[] splitString(String string) {
+		String[] stringArray = string.split(" ");
+		return stringArray;
+	}
+
+	/******************************************************************************
+	 * Function to print the index of the searched character if present in the array
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static void characterWordBinarySearchChecker(String[] array) {
+		System.out.println("Enter the word or character to be searched:-");
+		String searchElement = stringInput();
+		Arrays.sort(array);
+		long startTime = startTimer();
+		int index = characterWordBinarySearch(array,searchElement,0,array.length-1);
+		long stopTime = stopTimer();
+		System.out.println("Time taken for searching is " + (stopTime - startTime) + " nano seconds");
+		if(index == -1) 
+			System.out.println("Word not present");
+		else
+			System.out.println("Word " + searchElement + " found at position " + (index));
+	}
+	
+	/******************************************************************************
+	 * Function to perform the word  or character binary search
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static int characterWordBinarySearch(String[] array, String searchElement, int start, int end) {
+		int mid = (start + end)/2;
+		if(array[mid].compareToIgnoreCase(searchElement) == 0)
+			return mid;
+		else {
+			if(searchElement.compareToIgnoreCase(array[mid]) > 0) 
+				return characterWordBinarySearch(array, searchElement, mid+1,end);
+			else
+				return characterWordBinarySearch(array, searchElement, start, mid-1);
 		}
 	}
 
 	/******************************************************************************
-	 * Function to recursively call binary search function
+	 * Function to perform the string binary search
 	 * 
-	 * @param array which stores the elements
+	 * @param 
+	 * @return 
 	 ******************************************************************************/
-	public static <T extends Comparable <T>> void binarySearchChecker(T[] array) {
-		System.out.println("Enter the word to be searched:-");
-		T searchElement = new T(integerInput());
+	public static void stringBinarySearch(String input) {
+		String[] stringArray = splitString(input);
+		if(stringArray.length == 1) {
+			String string = stringArray[0];
+			String[] charArray = string.split("");
+			characterWordBinarySearchChecker(charArray);
+		}
+		else {
+			characterWordBinarySearchChecker(stringArray);
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to perform insertion sort for an String array
+	 * 
+	 * @param array to store the integer array to be sorted
+	 * @param key to store the element to be compared
+	 ******************************************************************************/
+	public static void wordInsertionSort(String[] array) {
+		long startTime = startTimer();
+		for(int i=1; i<array.length; i++) {
+			String key = array[i];
+			int j = i-1;
+			while(j>=0 && array[j].compareToIgnoreCase(key)>0) {
+				array[j+1] = array[j];
+				j = j-1;
+			}
+			array[j+1] = key;
+		}
+		long stopTime = stopTimer();
+		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+		System.out.println("Sorted array :-");
+		for(String n : array) {
+			System.out.println(n);
+		}
+	}
+
+	
+	/******************************************************************************
+	 * Function to sort the string using insertion sort
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static void stringInsertionSort(String input) {
+		String[] stringArray = splitString(input);
+		if(stringArray.length == 1) {
+			String string = stringArray[0];
+			String[] charArray = string.split("");
+			wordInsertionSort(charArray);
+		}
+		else {
+			wordInsertionSort(stringArray);
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to perform Bubble sort for an character array
+	 * 
+	 * @param array to store the integer array to be sorted
+	 ******************************************************************************/
+	public static void characterBubbleSort(char[] array) {
+		long startTime = startTimer();
+		for(int i=0; i<array.length-1; i++) {
+			for(int j=i+1;j<array.length-1-i;j++) {
+				if(array[j]>array[j+1]) {
+					char temp = array[j];
+					array[j] =  array[j+1];
+					array[j+1] = temp;
+				}
+			}
+		}
+		long stopTime = stopTimer();
+		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+		System.out.println("Sorted array :-");
+		for(char n : array) {
+			System.out.println(n);
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to perform Bubble sort for an String array
+	 * 
+	 * @param array to store the integer array to be sorted
+	 ******************************************************************************/
+	public static void wordBubbleSort(String[] array) {
+		long startTime = startTimer();
+		for(int i=0;i<array.length-1;i++) {
+			for(int j=i+1;j<array.length-1-i;j++) {
+				if(array[j].compareToIgnoreCase(array[j+1])>0) {
+					String temp = array[j];
+					array[j] = array[j+1];
+					array[j+1] = temp;
+				}
+			}
+		}
+		long stopTime = stopTimer();
+		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+		System.out.println("Sorted array :-");
+		for(String n : array) {
+			System.out.println(n);
+		}
+	}
+
+	
+	/******************************************************************************
+	 * Function to sort the string using bubble sort
+	 * 
+	 * @param input to store the string to be sorted
+	 ******************************************************************************/
+	public static void stringBubbleSort(String input) {
+		String[] stringArray = splitString(input);
+		if(stringArray.length == 1) {
+			String string = stringArray[0];
+			char[] charArray = string.toCharArray();
+			characterBubbleSort(charArray);
+		}
+		else {
+			wordBubbleSort(stringArray);
+		}
+	}
+	
+
+	/******************************************************************************
+	 * Function to sort the string using bubble sort
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static void getGuessNumber(int range) {
+		int[] array = new int[range+1];
+		for(int i=0;i<=range;i++) {
+			array[i] = i;
+		}
+		int number = guessedNumber(array, 0,array.length-1);
+		if(number == -1) {
+			System.out.println("Number out of range");
+		}
+		else
+			System.out.println("Number is " + number);
+	}
+	
+	/******************************************************************************
+	 * Function to sort the string using bubble sort
+	 * 
+	 * @param 
+	 * @return 
+	 ******************************************************************************/
+	public static int guessedNumber(int[] array, int start, int end) {
+		int mid = (start + end)/2;
+		System.out.println("Is " + array[mid] + " the number?");
+		System.out.println("If yes, enter 1 or else enter 0");
+		System.out.println("Enter your choice:-");
+		int answer = integerInput();
+		if(answer == 1)
+			return array[mid];
+		else {
+			System.out.println("Is number greater than the printed number?");
+			System.out.println("If yes, enter 1 or else enter 0");
+			int reply = integerInput();
+			if(reply == 1) 
+				return guessedNumber(array,mid+1,end);
+			else
+				return guessedNumber(array,start, mid-1);
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to read a text file 
+	 *
+	 ******************************************************************************/
+	public static String[] readWordListFile() {
+		String[] array = new String[5];
+		try {
+			Scanner input = new Scanner(new File("wordList.text"));
+			while(input.hasNextLine()) {
+				String words = input.nextLine();
+				array = words.split(";");
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		for(String n : array)
+			System.out.println(n);
+		return array;
+	}
+	
+	/******************************************************************************
+	 * Function to read a text file 
+	 *
+	 ******************************************************************************/
+	public static void searchWord(String searchElement) {
+		String[] array = readWordListFile();
 		Arrays.sort(array);
 		long startTime = startTimer();
-		int index = binarySearch(array,searchElement,0,array.length-1);
+		int index = characterWordBinarySearch(array,searchElement,0,array.length-1);
 		long stopTime = stopTimer();
 		System.out.println("Time taken for searching is " + (stopTime - startTime) + " nano seconds");
 		if(index == -1) 
@@ -303,22 +564,238 @@ public class Utility {
 		else
 			System.out.println("Word " + searchElement + " found at position " + (index+1));
 	}
+	
+
 	/******************************************************************************
-	 * Function to perform the word  or character binary search
+	 * Function to sort the string using merge sort
 	 * 
-	 * @param 
-	 * @return 
+	 * @param input to store the string to be sorted
 	 ******************************************************************************/
-	public static <T extends Comparable <T>> int binarySearch(T[] array, T searchElement, int start, int end) {
-		int mid = (start + end)/2;
-		if(array[mid].compareTo(searchElement) == 0)
-			return mid;
+	public static void stringMergeSort(String input) {
+		String[] stringArray = splitString(input);
+		if(stringArray.length == 1) {
+			String string = stringArray[0];
+			String[] charArray = string.split("");
+			long startTime = startTimer();
+			String[] array = wordMergeSort(charArray,0,charArray.length-1);
+			long stopTime = stopTimer();
+			System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+			System.out.println("Sorted array :-");
+			for(String n : array)
+				System.out.println(n);
+		}
 		else {
-			if(searchElement.compareTo(array[mid]) > 0) 
-				return binarySearch(array, searchElement, mid+1,end);
-			else
-				return binarySearch(array, searchElement, start, mid-1);
+			long startTime = startTimer();
+			String[] array = wordMergeSort(stringArray,0,stringArray.length-1);
+			long stopTime = stopTimer();
+			System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+			System.out.println("Sorted array :-");
+			for(String n : array)
+				System.out.println(n);
 		}
 	}
+	
+	/******************************************************************************
+	 * Function to perform merge sort for an String array
+	 * 
+	 * @param array to store the string array to be sorted
+	 * @param start to store the starting index of the array
+	 * @param end to store the ending index of the array
+	 ******************************************************************************/
+	public static String[] wordMergeSort(String[] array, int start, int end) {
+		if(start<end) {
+			int mid = (start+end)/2;
+			wordMergeSort(array,start,mid);
+			wordMergeSort(array,mid+1,end);
+			merge(array,start,mid,end);
+		}
+		return array;
+	}
 
+	/******************************************************************************
+	* Function to perform merging of the String array for merge sort
+	* 
+	* @param array to store the string array to be sorted
+	* @param start to store the starting index of the array
+	* @param end to store the ending index of the array
+	******************************************************************************/
+	public static void merge(String[] array, int start, int mid, int end) {
+		// Find sizes of two subarrays to be merged
+		int length1 = mid-start+1;
+		int length2 = end-mid;
+		//create temporary arrays
+		String[] leftArray = new String[length1];
+		String[] rightArray = new String[length2];
+		//copy data to temporary array
+		for(int i=0;i<length1;i++)
+			leftArray[i] = array[start+i];
+		for(int j=0;j<length2;j++)
+			rightArray[j] = array[mid+1+j];
+		int i=0,j=0,k=start;
+		while(i<length1 && j<length2) {
+			if(leftArray[i].compareToIgnoreCase(rightArray[j])<0) {
+				array[k] = leftArray[i];
+				i++;
+			}
+			else {
+				array[k] = rightArray[j];
+				j++;
+				}
+				k++;
+			}
+			while(i<length1) {
+				array[k] = leftArray[i];
+				i++;
+				k++;
+			}
+			while(j<length2) {
+				array[k] = rightArray[j];
+				j++;
+				k++;
+			}
+	}
+	/******************************************************************************
+	* Function to get the noOfNotes 
+	* 
+	* @param amount stores the value entered by the user
+	* @param i stores the index value to get the type of notes from notes array
+	******************************************************************************/
+	public static void noOfNotes(int amount, int i) {
+		while(amount>0) {
+			if(amount>=getNotes(i)) {
+				System.out.println(getNotes(i) + " RS Notes " + amount/getNotes(i));
+				amount = amount%getNotes(i);
+				System.out.println(amount);
+				noOfNotes(amount,i);
+			}
+			else
+				noOfNotes(amount,++i);
+		}
+	}
+	
+	/******************************************************************************
+	* Function to return the types of notes
+	* 
+	* @param index to get the value at the particular index
+	* @return value at the index passed
+	******************************************************************************/
+	public static int getNotes(int index) {
+		int[] notes = {1000,500,100,50,10,2,1};
+		return notes[index];
+	}
+	
+	/******************************************************************************
+	* Function to print the week day of the particular date
+	* 
+	* @param month to store the value of the month
+	* @param day to store the value of the day
+	* @param year to store the value of the year
+	******************************************************************************/
+	public static void printWeekDay(int month, int day, int year) {
+		int y = year-(14-month)/12;
+		int x = y+(y/4)-y/100+y/400;
+		int m = month+12*((14-month)/12)-2;
+		int d = (day+x+(31*m)/12)%7;
+		switch(d){
+			case 0:
+				System.out.println("Sunday");
+				break;
+			case 1:
+				System.out.println("Monday");
+				break;
+			case 2:
+				System.out.println("Tuesday");
+				break;
+			case 3:
+				System.out.println("Wednesday");
+				break;
+			case 4:
+				System.out.println("Thursday");
+				break;
+			case 5:
+				System.out.println("Friday");
+				break;
+			case 6:
+				System.out.println("Saturday");
+				break;
+		}
+	}
+	
+	/******************************************************************************
+	* Function to perform the temperature conversion from fahrenheit to celcius 
+	* and vice versa
+	* 
+	* @param choice to perform the switch case task accordingly
+	******************************************************************************/
+	public static void convertTemperature(int choice) {
+		switch(choice) {
+		case 1:
+			System.out.println("Enter temperature");
+			double fahrenheit = integerInput();
+			double celcius = (fahrenheit-32)*(5.0/9.0);
+			System.out.println(fahrenheit + " Fahrenheit = " + celcius + " Celcius");
+			break;
+		case 2:
+			System.out.println("Enter temperature");
+			double celciusTemp = integerInput();
+			double fahrenheitTemp = celciusTemp*(9.0/5.0)+32;
+			System.out.println(celciusTemp + " Celcius = " + fahrenheitTemp + " Fahrenheit");
+			break;
+		default :
+			System.out.println("Invalid choice");
+		}
+	}
+	
+	/******************************************************************************
+	* Function to get the monthly payment needed to pay off the loan in given year
+	* with given principle amount with given rate
+	* 
+	* @param principle to store the principle value 
+	* @param year to store the year value given by the user
+	* @param rate to store the rate entered by the user
+	* @return payment need to pay off loan
+	******************************************************************************/
+	public static double getMonthlyPayment(double principle, int year, double rate) {
+		int n = 12*year;
+		double r = rate/(12*100);
+		double payment = (principle*r)/(1-Math.pow((1+r), -n));
+		return payment;
+	}
+	
+	/******************************************************************************
+	* Function to get the monthly payment needed to pay off the loan in given year
+	* with given principle amount with given rate
+	* 
+	* @param principle to store the principle value 
+	* @param year to store the year value given by the user
+	* @param rate to store the rate entered by the user
+	* @return payment need to pay off loan
+	******************************************************************************/
+	public static double sqrt(int c) {
+		double t=c;
+		double epsilon = 1e-15;
+		while(Math.abs(t-c/t)>epsilon*t) {
+			t = (c/t+t)/2;
+		}
+		return t;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
