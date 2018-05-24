@@ -14,14 +14,14 @@ import com.bridgelabz.utils.Utility;
 public class SortSearchEfficiency {
 
 	public static void main(String[] args) {
-		//int[] array = Utility.createIntegerArray();
-		//Utility.integerBinarySearchChecker(array);
-		//Utility.integerInsertionSort();
-		//Utility.integerBubbleSort();
+		int[] array = Utility.createIntegerArray();
+		Utility.integerBinarySearchChecker(array);
+		Utility.integerInsertionSort();
+		Utility.integerBubbleSort();
 		String string = Utility.stringInput();
 		Utility.stringBinarySearch(string);
-		//Utility.stringInsertionSort(string);
-		//Utility.stringBubbleSort(string);
+		Utility.stringInsertionSort(string);
+		Utility.stringBubbleSort(string);
 		
 	}
 

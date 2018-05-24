@@ -230,7 +230,7 @@ public class Utility {
 		if(index == -1) 
 			System.out.println("Elements not present");
 		else
-			System.out.println("Element " + searchElement + " found at position " + (index+1));
+			System.out.println("Element " + searchElement + " is present");
 	}
 	
 	/******************************************************************************
@@ -290,7 +290,7 @@ public class Utility {
 		int[] array = createIntegerArray();
 		long startTime = startTimer();
 		for(int i=0; i<array.length-1; i++) {
-			for(int j=1;j<array.length-1-i; j++) {
+			for(int j=0;j<array.length-1-i; j++) {
 				if(array[j]>array[j+1]) {
 					int temp = array[j+1];
 					array[j+1] = array[j];
@@ -333,7 +333,7 @@ public class Utility {
 		if(index == -1) 
 			System.out.println("Word not present");
 		else
-			System.out.println("Word " + searchElement + " found at position " + (index));
+			System.out.println("Word " + searchElement + " is present");
 	}
 	
 	/******************************************************************************
@@ -417,30 +417,6 @@ public class Utility {
 	}
 	
 	/******************************************************************************
-	 * Function to perform Bubble sort for an character array
-	 * 
-	 * @param array to store the integer array to be sorted
-	 ******************************************************************************/
-	public static void characterBubbleSort(char[] array) {
-		long startTime = startTimer();
-		for(int i=0; i<array.length-1; i++) {
-			for(int j=i+1;j<array.length-1-i;j++) {
-				if(array[j]>array[j+1]) {
-					char temp = array[j];
-					array[j] =  array[j+1];
-					array[j+1] = temp;
-				}
-			}
-		}
-		long stopTime = stopTimer();
-		System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
-		System.out.println("Sorted array :-");
-		for(char n : array) {
-			System.out.println(n);
-		}
-	}
-	
-	/******************************************************************************
 	 * Function to perform Bubble sort for an String array
 	 * 
 	 * @param array to store the integer array to be sorted
@@ -448,7 +424,7 @@ public class Utility {
 	public static void wordBubbleSort(String[] array) {
 		long startTime = startTimer();
 		for(int i=0;i<array.length-1;i++) {
-			for(int j=i+1;j<array.length-1-i;j++) {
+			for(int j=0;j<array.length-1-i;j++) {
 				if(array[j].compareToIgnoreCase(array[j+1])>0) {
 					String temp = array[j];
 					array[j] = array[j+1];
@@ -474,8 +450,8 @@ public class Utility {
 		String[] stringArray = splitString(input);
 		if(stringArray.length == 1) {
 			String string = stringArray[0];
-			char[] charArray = string.toCharArray();
-			characterBubbleSort(charArray);
+			String[] charArray = string.split("");
+			wordBubbleSort(charArray);
 		}
 		else {
 			wordBubbleSort(stringArray);
@@ -778,10 +754,10 @@ public class Utility {
 	}
 	
 	/******************************************************************************
-	* Function to find the square root of the given number using Newton's method 
+	* Function to convert from decimal to binary 
 	* 
-	* @param c stores the number which square root is to be found
-	* @return the square root of the number
+	* @param number to convert it to binary
+	* @return string with binary value
 	******************************************************************************/
 	public static String toBinary(int number) {
 		StringBuffer binaryValue = new StringBuffer();
@@ -793,6 +769,91 @@ public class Utility {
 		}
 		binaryValue.append("1");
 		return binaryValue.reverse().toString();
+	}
+	
+	/******************************************************************************
+	* Function to split an octate into two half
+	* 
+	* @param string which contains the binary value
+	* @return string which contains the binary value which decimal is to be found
+	******************************************************************************/
+	public static String halfAnOctate(String string) {
+		StringBuffer octate = new StringBuffer(string);
+		String stringOctate = "";
+		String nibble1 = "";
+		String nibble2 = "";
+		String nibble = "";
+		if(octate.length()<8) {
+			octate = octate.reverse();
+			for(int i=0;i<(8-octate.length());i++) {
+				octate.append("0");
+			}
+		}
+		octate = octate.reverse();
+		stringOctate = octate.toString();
+		for(int i=0;i<4;i++)
+			nibble1 += stringOctate.charAt(i);
+		for(int i=4;i<8;i++)
+			nibble2 += stringOctate.charAt(i);
+		nibble = nibble2 + nibble1;
+		return nibble;
+	}
+	
+	/******************************************************************************
+	* Function to convert binary to decimal
+	* 
+	* @param binary store the binary value in string
+	* @return decimal value obtained
+	******************************************************************************/
+	public static int getDecimalValue(String binary) {
+		int decimal = 0;
+		int powerOfTwo = 0;
+		for(int i=binary.length()-1;i>=0;i--) {
+			int binaryValue = Integer.parseInt(binary.charAt(i)+"");
+			decimal += binaryValue*Math.pow(2,powerOfTwo);
+			powerOfTwo++;
+		}
+		return decimal;
+	}
+	
+	/******************************************************************************
+	* Function to check if the number is power of two
+	* 
+	* @param number to be checked
+	* @return true if number is power of two else return false
+	******************************************************************************/
+	public static boolean checkForPowOfTwo(int number) {
+		boolean divisible = true;
+		while(number>0) {
+			if(number%2 == 0) {
+				number = number/2;
+			}
+			else {
+				divisible =false;
+				return divisible;
+			}
+		}
+		return divisible;
+	}
+
+	/******************************************************************************
+	* Function to convert from decimal to binary, swap the nibbles and 
+	* check if the returned number is power of two
+	* 
+	* @param c stores the number which square root is to be found
+	* @return the square root of the number
+	******************************************************************************/
+	public static void toDecimal(int decimal) {
+		String binaryValue = toBinary(decimal);
+		System.out.println(binaryValue);
+		String nibble = halfAnOctate(binaryValue);
+		System.out.println(nibble);
+		int decimalValue = getDecimalValue(nibble);
+		System.out.println(decimalValue);
+		if(checkForPowOfTwo(decimalValue))
+			System.out.println(decimalValue + " is power of two ");
+		else
+			System.out.println(decimalValue + " is not power of Two ");
 	}
 }
 

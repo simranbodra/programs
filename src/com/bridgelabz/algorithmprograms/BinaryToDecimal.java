@@ -1,6 +1,7 @@
 /******************************************************************************
  *  
- *  Purpose: to sort the word from the wordlist file using Bubble sort
+ *  Purpose: to convert from decimal to binary, swap the nibbles and 
+	* check if the returned number is power of two
  *
  *  @author  Simran Bodra
  *  @version 1.0
@@ -11,11 +12,12 @@ package com.bridgelabz.algorithmprograms;
 
 import com.bridgelabz.utils.Utility;
 
-public class WordBubbleSort {
+public class BinaryToDecimal {
 
 	public static void main(String[] args) {
-		String[] words = Utility.readWordListFile();
-		Utility.wordBubbleSort(words);
+		System.out.println("Enter a value");
+		int decimal = Utility.integerInput();
+		Utility.toDecimal(decimal);
 	}
 
 }
