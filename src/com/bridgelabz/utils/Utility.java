@@ -53,6 +53,7 @@ public class Utility {
 	/**************************************************************************************
 	 * Function to take replace the template
 	 * 
+	 * @param string username which contains the username entered by the user
 	 * @return String containing replaced template with proper name
 	 ***************************************************************************************/
 	public static String replaceTemplate(String username) {
@@ -88,10 +89,7 @@ public class Utility {
 	 * Function to get the percentage of head and tail after flipping coin given
 	 * number of times
 	 * 
-	 * @param head
-	 *            to keep the count of number of times head comes
-	 * @param tail
-	 *            to keep the count of number of times tail comes
+	 * @param noOfTimes the coin to be flipped 
 	 *******************************************************************************************/
 	public static void flipCoinPercentage(int noOfTimes) {
 		int head = 0, tail = 0;
@@ -108,9 +106,7 @@ public class Utility {
 	/*************************************************************************
 	 * Function to check the given year is leap year or not
 	 * 
-	 * @param validyear to get the valid year
-	 * @param count to count the number of digits
-	 * @return true for leap year and false for not a leap year
+	 * @param integer year to store the year to be checked
 	 *************************************************************************/
 	public static void leapYearChecker(int year) {
 		int count=0;
@@ -147,7 +143,6 @@ public class Utility {
 	 * Function to get the value of Nth harmonic number
 	 * 
 	 * @param value to store the value of Nth harmonic number
-	 * @return double value containing harmonic number
 	 *****************************************************************************/
 	public static void harmonicValue(int n) {
 		double value = 0.0;
@@ -158,7 +153,6 @@ public class Utility {
 		}
 		else {
 			System.out.println("Invalid input, enter a positive number");
-			scanner.nextLine();
 			harmonicValue(integerInput());
 		}
 	}
@@ -166,8 +160,7 @@ public class Utility {
 	/******************************************************************************
 	 * Function to get the prime factors of the given number
 	 * 
-	 * @param primeFactors to store the factors of the given number
-	 * @return Object[] containing all the prime factors of the given number
+	 * @param number to store the number which prime factor is needed
 	 ******************************************************************************/
 	public static void primeFactorsOfNumber(int number) {
 		HashSet<Integer> primeFactors = new HashSet<Integer>();
@@ -208,8 +201,9 @@ public class Utility {
 	/*****************************************************************************
 	 * Function to get the percentage value of bet won and lost
 	 * 
-	 * @param win to keep the count of winning the bet
-	 * @param loss to keep the count of the losing the bet
+	 * @param stack stores the amount players currently has
+	 * @param goal stores the amount is to be made after all the bets
+	 * @param noOfGoal store the number of time playes bets
 	 **************************************************************************/
 
 	public static void winLossPercentage(int stack, int goal, int noOfBets) {
@@ -238,7 +232,8 @@ public class Utility {
 	/*************************************************************************
 	 * Function to print a 2D array of users choice
 	 * 
-	 * @param array to store the elements in 2D array
+	 * @param rows to store the number of rows an array can have
+	 * @param columns to stores the number of columns an array can have
 	 **********************************************************************/
 	public static void printAarray(int rows, int columns) {
 		Object[][] array = new Object[rows][columns];
@@ -260,8 +255,7 @@ public class Utility {
 	/*************************************************************************
 	 * Function to find distinct triplets which gives the sum as 0 
 	 * 
-	 * @param array to store the elements in an array
-	 * @param count to keep the count of such triplets
+	 * @param noOfElements to get the number of elements to be stored
 	 **********************************************************************/
 	public static void getDistinctTriplets(int noOfElements) {
 		int[] array = new int[noOfElements];
@@ -294,8 +288,8 @@ public class Utility {
 	/*************************************************************************
 	 * Function to find the Eculidean Distance from the given (x,y) co-ordinates
 	 * 
-	 * @param x to store the value of x co-ordinate
-	 * @param y to store the value of y co-ordinate
+	 * @param xCoordinate to store the value of x co-ordinate
+	 * @param yCoordinate to store the value of y co-ordinate
 	 **********************************************************************/
 	public static double getEculideanDistance(String xCoordinate, String yCoordinate) {
 		int x = Integer.parseInt(xCoordinate);
@@ -315,8 +309,8 @@ public class Utility {
 	/*************************************************************************
 	 * Function to print the String permutation 
 	 * 
-	 * @param n to store the length of the String
-	 * @param prefix to store the STring permutation formed
+	 * @param str to store the current string after each permutation call
+	 * @param prefix to store the String permutation formed
 	 **********************************************************************/
 	public static void permutation(String prefix, String str) {
 		int n = str.length();
@@ -333,7 +327,7 @@ public class Utility {
 	/*************************************************************************
 	 * Function to get the current time in milliseconds
 	 * 
-	 * @param startTime to store the current time
+	 * @param start to check if the timer is to be started
 	 * @return long value with current time in milliseconds
 	 **********************************************************************/
 	public static long startTimer(int start) {
@@ -349,8 +343,8 @@ public class Utility {
 	/*************************************************************************
 	 * Function to print the elapsed time 
 	 * 
-	 * @param stopTime to store the current time
-	 * @param elapsedTime to store the difference between the start time and stop time
+	 * @param stop to check if the timer is to be stopped
+	 * @param startTime to store the time when the timer was started
 	 **********************************************************************/
 	public static void stopTimer(int stop, long startTime) {
 		long stopTime = 0;
@@ -365,9 +359,8 @@ public class Utility {
 	/*************************************************************************
 	 * Function to print the effective temperature  
 	 * 
-	 * @param temp to store the given temperature
-	 * @param v to store the given velocity
-	 * @param effTemperature to store the calculated effective temperature
+	 * @param string temperature to store the given temperature
+	 * @param string velocity to store the velocity of the wind
 	 **********************************************************************/
 	public static void effectiveTemperature(String temperature, String velocity) {
 		double temp = Double.parseDouble(temperature);
@@ -385,9 +378,6 @@ public class Utility {
 	/*************************************************************************
 	 * Function to find the roots of the given quadratic equation  
 	 * 
-	 * @param discriminant to store the discriminate for the given equation
-	 * @param root1 to store the first root of the equation
-	 * @param root2 to store the second root of the equation
 	 **********************************************************************/
 	public static void getRoots(int a, int b, int c) {
 		double discriminant = Math.pow(b, 2) - 4*a*c;
@@ -397,18 +387,6 @@ public class Utility {
 		System.out.println("Second root for " + a + "x*x" + b + "x" + c + " is " + root2);
 
 		
-	}
-	
-	/*************************************************************************
-	 * Function to find the roots of the given quadratic equation  
-	 * 
-	 * @param 
-	 **********************************************************************/
-	public static void displayBoard() {
-		String[][] matrix = new String[3][3];
-		for(int i=0;i<3;i++) {
-			
-		}
 	}
 	
 }
