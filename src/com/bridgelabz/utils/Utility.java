@@ -102,7 +102,6 @@ public class Utility {
 	 * 
 	 * @return true if the number is prime and return false if the number is not prime
 	 ******************************************************************************/
-	@SuppressWarnings("unused")
 	public static boolean primeChecker(int n) {
 		if(n==0 || n==1) {
 			return false;
