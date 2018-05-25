@@ -12,6 +12,8 @@ package com.bridgelabz.utils;
 import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 import java.io.PrintWriter;
 import java.io.OutputStreamWriter;
@@ -57,32 +59,14 @@ public class Utility {
 	 * @return String containing replaced template with proper name
 	 ***************************************************************************************/
 	public static String replaceTemplate(String username) {
-		String template = "Hello " + username + ", How are you?";
+		String template = "Hello <<username>>, How are you?";
 		// to ensure username has minimum 3 characters
 		if (username.length() >= 3) {
-			String propername = getPropername(username);
-			template = template.replace(username, propername);
+			template = template.replace("<<username>>", username);
 		} else
 			System.out.println("invalid input");
 		return template;
 
-	}
-
-	/*****************************************************************************************
-	 * Function to get proper name from provided username
-	 * 
-	 * @return String containing proper name of the user
-	 *****************************************************************************************/
-
-	public static String getPropername(String username) {
-		// @param string name to store the valid username
-		String name = "";
-		for (int i = 0; i < username.length(); i++) {
-			if ((username.charAt(i) >= 65 && username.charAt(i) <= 90)
-					|| (username.charAt(i) >= 97 && username.charAt(i) <= 122))
-				name += username.charAt(i);
-		}
-		return name;
 	}
 
 	/*******************************************************************************************
@@ -100,7 +84,7 @@ public class Utility {
 				head++;
 		}
 		System.out.println("Percentage of head after flipping coin " + noOfTimes + " = " + (head * 100) / noOfTimes);
-		System.out.println("Percentage of head after flipping coin " + noOfTimes + " = " + (tail * 100) / noOfTimes);
+		System.out.println("Percentage of tail after flipping coin " + noOfTimes + " = " + (tail * 100) / noOfTimes);
 	}
 
 	/*************************************************************************
@@ -117,7 +101,7 @@ public class Utility {
 		}
 		if(count == 4) {
 			
-			if (year % 4 == 0 || (year % 400 == 0 && year % 100 == 0))
+			if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
 				System.out.println(year + " is a leap year");
 			else
 				System.out.println(year + "is not a leap year");
@@ -163,39 +147,37 @@ public class Utility {
 	 * @param number to store the number which prime factor is needed
 	 ******************************************************************************/
 	public static void primeFactorsOfNumber(int number) {
-		HashSet<Integer> primeFactors = new HashSet<Integer>();
 		int i = 2;
 		while (number > 1) {
 			if (number % i == 0) {
-				primeFactors.add(i);
+				System.out.println(i);
 				number = number / i;
 			} else
 				i++;
-		}
-		Iterator<Integer> itr = primeFactors.iterator();
-		while (itr.hasNext()) {
-			System.out.println(itr.next());
 		}
 	}
 
 	/*************************************************************************
 	 * Function to generate random coupon numbers
 	 * 
-	 * @param arr to store the provided string in array
-	 * @param c to get the random character from the character array
+	 * @param noOfCoupons to store the number of distinct coupons to generate
 	 **************************************************************************/
 	public static void couponGenerator(int noOfCoupons) {
-		Random random = new Random(); // creating an instance of Random class;
-		while (noOfCoupons > 0) {
-			StringBuilder randomValue = new StringBuilder(); // creating an instance of StringBUffer class;
-			char[] arr = "12345ABCDE".toCharArray();
-			for (int i = 0; i < 8; i++) {
-				char c = arr[random.nextInt(arr.length)];
-				randomValue.append(c);
+		Random random = new Random(); 
+		List<Integer> array = new ArrayList<>();
+		int coupons = 0;
+		int count = 0;
+		do {
+			coupons = random.nextInt(noOfCoupons);
+			count++;
+			if(!array.contains(coupons)) {
+				array.add(coupons);
 			}
-			System.out.println(randomValue);
-			noOfCoupons--;
 		}
+		while(array.size() < noOfCoupons);
+		for(int n : array)
+			System.out.println(array.get(n));
+		System.out.println("count = " + count);
 	}
 
 	/*****************************************************************************
@@ -203,7 +185,7 @@ public class Utility {
 	 * 
 	 * @param stack stores the amount players currently has
 	 * @param goal stores the amount is to be made after all the bets
-	 * @param noOfGoal store the number of time playes bets
+	 * @param noOfGoal store the number of time players bets
 	 **************************************************************************/
 
 	public static void winLossPercentage(int stack, int goal, int noOfBets) {
@@ -286,12 +268,12 @@ public class Utility {
 	
 	
 	/*************************************************************************
-	 * Function to find the Eculidean Distance from the given (x,y) co-ordinates
+	 * Function to find the Euclidean Distance from the given (x,y) co-ordinates
 	 * 
 	 * @param xCoordinate to store the value of x co-ordinate
 	 * @param yCoordinate to store the value of y co-ordinate
 	 **********************************************************************/
-	public static double getEculideanDistance(String xCoordinate, String yCoordinate) {
+	public static double getEuclideanDistance(String xCoordinate, String yCoordinate) {
 		int x = Integer.parseInt(xCoordinate);
 		int y = Integer.parseInt(yCoordinate);
 		double distance = Math.pow(Math.pow(x, 2) + Math.pow(y, 2),0.5);
@@ -313,6 +295,7 @@ public class Utility {
 	 * @param prefix to store the String permutation formed
 	 **********************************************************************/
 	public static void permutation(String prefix, String str) {
+		
 		int n = str.length();
 		if(n == 0) {
 			System.out.println(prefix);

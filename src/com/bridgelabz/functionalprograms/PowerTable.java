@@ -14,7 +14,6 @@ import com.bridgelabz.utils.Utility;
 public class PowerTable {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int times = Integer.parseInt(args[0]);
 		if(times<=31)
 			Utility.powerOfTwo(times);
