@@ -2,12 +2,10 @@ package com.bridgelabz.datastructureprograms;
 
 public class SinglyLinkedList <T extends Comparable <T>>{
 	protected Node start;
-	protected Node end;
 	protected int size;
 	
 	public SinglyLinkedList() {
 		start = null;
-		end = null;
 		size = 0;
 	}
 	
@@ -21,12 +19,13 @@ public class SinglyLinkedList <T extends Comparable <T>>{
 	
     public void add(T value) {
     	Node newNode = new Node(value, null);
+    	Node temp = start;
     	if(start == null){
             start = newNode;
-            end = newNode;
         } else {
-            end.setNext(newNode);
-            end = newNode;
+            while(temp != null) {
+            	
+            }
         }
     }
     
@@ -45,19 +44,33 @@ public class SinglyLinkedList <T extends Comparable <T>>{
     }
     
     public void insert(T value , int position) {
-        Node nptr = new Node(value, null);                
-        Node ptr = start;
-        position = position - 1 ;
-        for (int i = 1; i < size; i++) {
-            if (i == position) {
-                Node tmp = ptr.getNext() ;
-                ptr.setNext(nptr);
-                nptr.setNext(tmp);
-                break;
+        Node newNode = new Node(value, null); 
+        Node temp = start;
+        if(temp == null && position != 0) { //if head is null and position is zero skip it.
+            return;
+          } else if(temp == null && position == 1) { // if head null and position is zero set at the head.
+            temp = newNode;
+          }
+         
+          if(position == 1) { // if position is zero then new node set at the head.
+            newNode.next = temp;
+            this.start = newNode;
+          }
+         
+          Node current = temp;
+          Node previous = null;
+          int i = 1;
+         
+          while(i < position) { //loop until find the given position.
+            previous = current;
+            current = current.next;
+            if(current == null)
+              break;
+              i++;
             }
-            ptr = ptr.getNext();
-        }
-        size++ ;
+         
+            newNode.next = current; //get the new node and linked the remaining nodes in the list.
+            previous.next = newNode;
     }
     
     public void remove(T item) {
@@ -79,31 +92,29 @@ public class SinglyLinkedList <T extends Comparable <T>>{
     
     public boolean search(T item) {
     	Node temp =start;
-    	if(temp != null && temp.data == item)
-    		return true;
-    	while(temp != null && temp.data != item) {
-    		temp = temp.next;
+    	while(temp != null) {
+    		if((temp.data).equals(item))
+    			return true;
+    		else
+    			temp = temp.next;
     	}
-    	if(temp.data != item)
-    		return false;
-    	else
-    		return true;
+    	return false;
     }
     
     public int index(T item) {
-    	int position = 0;
+    	int position = 1;
     	Node temp = start;
-    	if(temp != null && temp.data == item) {
-    		return position++;
+    	while(temp != null) {
+    		if((temp.data).equals(item)) {
+    			position = position + 1;
+    			return position;
+    		}
+    		else {
+    			temp = temp.next;
+    			position++;
+    		}
     	}
-    	while(temp != null && temp.data != item) {
-    		temp = temp.getNext();
-    		position++;
-    	}
-    	if(temp.data != item)
-    		return position;
-    	else
-    		return position;
+    	return position;
     }
     
     public T pop() {
@@ -112,8 +123,8 @@ public class SinglyLinkedList <T extends Comparable <T>>{
     		prev = temp;
     		temp = temp.next;
     	}
-    	T removedData = (T)temp.getData();
-    	prev.next = temp.next;
+    	T removedData = (T)prev.getData();
+    	prev.next = null;
     	size--;
     	return removedData;
     }
