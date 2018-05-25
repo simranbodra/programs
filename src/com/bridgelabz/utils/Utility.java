@@ -10,8 +10,6 @@
 package com.bridgelabz.utils;
 
 import java.util.Scanner;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
@@ -190,22 +188,22 @@ public class Utility {
 
 	public static void winLossPercentage(int stack, int goal, int noOfBets) {
 		int win = 0, loss = 0;
-		Random random = new Random();
-		for (int i = 0; i < noOfBets; i++) {
-			if (random.nextInt(10) > 5) {
+		for(int i = 0; i < noOfBets; i++) {
+			int cash = stack;
+			while(cash > 0 && cash < goal) {
+				if (Math.random() > 0.5) {
+					cash++;
+				} else {
+					cash--;
+				}
+			}
+			if (cash == goal) {
 				win++;
-				stack++;
-				System.out.println("bet won");
+				System.out.println("Won");
 			} else {
 				loss++;
-				stack--;
-				System.out.println("bet lost");
+				System.out.println("Lost");
 			}
-		}
-		if (stack == goal) {
-			System.out.println("Won the game");
-		} else {
-			System.out.println("Lost the game");
 		}
 		System.out.println("Win percentage = " + (win * 100 / noOfBets));
 		System.out.println("loose percentage = " + (loss * 100 / noOfBets));
