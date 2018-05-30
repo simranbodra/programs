@@ -6,39 +6,49 @@ public class HashSet {
 	
 	public HashSet(int size) {
 		this.size = size;
-		array = new OrderedLinkedList[size+1];
-		for(int i=0; i < size; i++) {
+		array = new OrderedLinkedList[size];
+		for(int i=0; i < array.length; i++) {
 			array[i] = new OrderedLinkedList();
 		}
 	}
 	public void add(int item) {
-		int position = item%(size+1);
+		int position = item%(size);
 		array[position].add(item);
 	}
 	
 	public void remove(int item) {
-		int position = item%(size+1);
+		int position = item%(size);
 		array[position].remove(item);
 	}
 	
 	public boolean search(int item) {
-		int position = item%(size+1);
+		int position = item%(size);
 		if(array[position].search(item))
 			return true;
 		else
 			return false;
 	}
 	
+	public int size() {
+		return size;
+	}
+
+	
 	public void display() {
-		for(int i=0; i< size; i++) {
-        while(true){
-            if(array[i] == null){
-                break;
-            }
-            System.out.println(array[i].getData());
-            array[i] = array[i].getNext();
-        }
+		for(int i=0; i< array.length; i++) {
+			OrderedLinkedList list = array[i];
+			System.out.print(array[i].displayElement());
 		}
+		System.out.println();
+	}
+	
+	public String displayElements() {
+		String string = "";
+		for(int i=0; i< array.length; i++) {
+			OrderedLinkedList list = array[i];
+			string += array[i].displayElement() + " ";
+		}
+		return string;
 	}
 	
 }

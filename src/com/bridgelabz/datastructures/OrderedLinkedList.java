@@ -161,6 +161,16 @@ public class OrderedLinkedList<T extends Comparable<T>>{
         }
     }
     
+    public String displayElement() {
+    	Node<T> temp = start;
+    	String string = "";
+    	while(temp != null) {
+    		string += temp.getData() + " ";
+    		temp = temp.getNext();
+    	}
+    	return string;
+    }
+    
  }
 
 

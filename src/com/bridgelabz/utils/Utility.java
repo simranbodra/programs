@@ -1,8 +1,7 @@
 package com.bridgelabz.utils;
 
 import java.io.File;
-//import java.io.PrintStream;
-//import java.lang.reflect.Array;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 import com.bridgelabz.datastructures.Deque;
@@ -254,7 +253,7 @@ public class Utility {
 	 * @return SinglyLinkedList which return the list of the elements
 	 ******************************************************************************/
 	public static HashSet addNumbersToSet(String[] array) {
-		HashSet numberSet = new HashSet(10);
+		HashSet numberSet = new HashSet(11);
 		for(int i=0; i<array.length; i++) {
 			numberSet.add(Integer.parseInt(array[i]));
 		}
@@ -265,19 +264,195 @@ public class Utility {
 	/******************************************************************************
 	 * Function to search the number on the HashSet
 	 * 
-	 * @param list which contains the elements
+	 * @param numberSet which contains the elements
 	 * @param searchElement which contains the element to be searched in the list
-	 * @return list which contains the modified list of elements
+	 * @return numberSet which contains the modified list of elements
 	 ******************************************************************************/
 	public static HashSet searchNumberFromSet(HashSet numberSet, int searchElement) {
-		System.out.println(numberSet.search(searchElement));
 		if(numberSet.search(searchElement)) {
 			numberSet.remove(searchElement);
 		}
 		else {
 			numberSet.add(searchElement);
 		}
+		numberSet.display();
 		return numberSet;
+	}
+
+	public static void addToFile(String fileName, HashSet numberSet) {
+		try{    
+	           FileWriter fw=new FileWriter(fileName);  
+	           fw.write(numberSet.displayElements());    
+	           fw.close();    
+	          }catch(Exception e){System.out.println(e);}    
+	          System.out.println("Success...");        
+	}
+	
+	public static boolean validateYear(String year) {
+		if(year.length() == 4)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean validateMonth(String month) {
+		int mon = Integer.parseInt(month);
+		for(int i=1; i<=12; i++) {
+			if(mon == i)
+				return true;
+		}
+		return false;
+	}
+	
+	/******************************************************************************
+	* Function to print the week day of the particular date
+	* 
+	* @param month to store the value of the month
+	* @param day to store the value of the day
+	* @param year to store the value of the year
+	******************************************************************************/
+	public static int getWeekDay(int month, int year) {
+		int day = 1;
+		int y = year-(14-month)/12;
+		int x = y+(y/4)-y/100+y/400;
+		int m = month+12*((14-month)/12)-2;
+		int d = (day+x+(31*m)/12)%7;
+		return d;
+	}
+	public static boolean checkLeapYear(int year) {
+		if(year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
+			return true;
+		else 
+			return false;
+	}
+	
+	public static int getNoOfDays(int month, int year) {
+		if(month == 2) {
+			if(checkLeapYear(year))
+				return 29;
+			else
+				return 28;
+		}
+		else if(month == 4 || month == 6 || month == 9 | month == 11)
+			return 30;
+		else
+			return 31;
+	}
+	
+	public static String getMonth(int month) {
+		switch(month) {
+		case 1:
+			return "January";
+		case 2:
+			return "February";
+		case 3:
+			return "March";
+		case 4:
+			return "April";
+		case 5:
+			return "May";
+		case 6:
+			return "June";
+		case 7:
+			return "July";
+		case 8:
+			return "August";
+		case 9:
+			return "September";
+		case 10:
+			return "October";
+		case 11:
+			return "November";
+		case 12:
+			return "December";
+		default:
+			return "Invalid";
+		}
+	}
+	
+	public static void printCalender(int dayCode, int month, int year) {
+		String[][] calenderArray = new String[7][7];
+		int noOfDays = getNoOfDays(month, year);
+		System.out.println(getMonth(month));
+		System.out.println(year);
+		int date = 1;
+		calenderArray[0][0] = "Sun ";
+		calenderArray[0][1] = "mon ";
+		calenderArray[0][2] = "tue ";
+		calenderArray[0][3] = "wed ";
+		calenderArray[0][4] = "thu ";
+		calenderArray[0][5] = "fri ";
+		calenderArray[0][6] = "sat ";
+		for(int i=1; i<7; i++) {
+			for(int j=dayCode; j<7; j++) {
+				if(date <= noOfDays) {
+					calenderArray[i][j] = date + "";
+					date++;
+				}
+			}
+			dayCode = 0;
+		}
+		for(int i=0; i<=0; i++) {
+			for(int j=0; j<7; j++) {
+				System.out.print(calenderArray[i][j]);
+			}
+			System.out.println();
+		}
+		for(int i=1; i<7; i++) {
+			for(int j=0; j<7; j++) {
+				if(calenderArray[i][j] != null && calenderArray[i][j].length() == 1) 
+					System.out.print(" " + calenderArray[i][j] + "  ");
+				else if(calenderArray[i][j] != null)
+					System.out.print(" " + calenderArray[i][j] + " ");
+				else
+					System.out.print("    ");
+			}
+			System.out.println();
+		}
+	}
+	
+	/******************************************************************************
+	 * Function to check if the given number is prime or not 
+	 * 
+	 * @return true if the number is prime and return false if the number is not prime
+	 ******************************************************************************/
+	public static boolean primeChecker(int n) {
+		if(n==0 || n==1) {
+			return false;
+		}
+		else {
+			for(int i=2;i*i<=n;i++) {
+				if(n%i==0) {
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+	
+	public static <T extends Comparable<T>>UnorderedLinkedList<T>[] addPrimeNumbersToSet() {
+		UnorderedLinkedList<T>[] array = new UnorderedLinkedList[10];
+		int lowerRange = 0;
+		int higherRange = 100;
+		int index = 0;
+		while(higherRange <= 1000) {
+			for(int i=lowerRange; i<= higherRange; i++ ) {
+				if(primeChecker(i)) {
+					UnorderedLinkedList<T> primeNumberList = new UnorderedLinkedList<T>();
+					array[index] =  primeNumberList.add((T)i);
+				}
+			}
+		}
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
