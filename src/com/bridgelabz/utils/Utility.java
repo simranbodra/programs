@@ -74,7 +74,8 @@ public class Utility {
 	 * @param noOfTimes the coin to be flipped 
 	 *******************************************************************************************/
 	public static void flipCoinPercentage(int noOfTimes) {
-		int head = 0, tail = 0;
+		int head = 0;
+		int tail = 0;
 		for (int i = 1; i <= noOfTimes; i++) {
 			if (Math.random() < 0.5)
 				tail++;
