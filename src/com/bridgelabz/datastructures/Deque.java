@@ -1,6 +1,6 @@
 package com.bridgelabz.datastructures;
 
-public class Deque<T extends Comparable<T>> {
+public class Deque<T> {
 private UnorderedLinkedList<T> list;
 	
 	public Deque() {

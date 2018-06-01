@@ -1,6 +1,6 @@
 package com.bridgelabz.datastructures;
 
-public class Queue <T extends Comparable<T>>{
+public class Queue <T>{
 	private UnorderedLinkedList<T> list;
 	
 	public Queue() {

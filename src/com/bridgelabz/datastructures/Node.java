@@ -1,9 +1,8 @@
 package com.bridgelabz.datastructures;
 
-public class Node <T extends Comparable<T>> {
+public class Node <T> {
 	private T data;
 	private Node<T> next;
-	public T value;
 	
 	public Node(T data) {
 		this.data = data;

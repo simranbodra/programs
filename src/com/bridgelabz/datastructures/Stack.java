@@ -1,7 +1,7 @@
 package com.bridgelabz.datastructures;
 
 
-public class Stack<T extends Comparable<T>> {
+public class Stack<T> {
 	protected Node<T> start;
 	protected int size;
 	

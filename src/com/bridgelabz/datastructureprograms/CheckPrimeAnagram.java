@@ -3,11 +3,11 @@ package com.bridgelabz.datastructureprograms;
 import com.bridgelabz.datastructures.UnorderedLinkedList;
 import com.bridgelabz.utils.Utility;
 
-public class PrimeNumberArray {
+public class CheckPrimeAnagram {
 
 	public static void main(String[] args) {
-		UnorderedLinkedList<UnorderedLinkedList<Integer>> numberSet = Utility.addPrimeNumbersToSet();
-		Utility.printPrimeNumbers(numberSet);
+		//UnorderedLinkedList primeNumberList = Utility.getPrimeNumberList();
+		Utility.getAnagram();
 	}
 
 }

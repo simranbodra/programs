@@ -1,6 +1,6 @@
 package com.bridgelabz.datastructures;
 
-public class UnorderedLinkedList <T extends Comparable<T>>{
+public class UnorderedLinkedList <T>{
 	protected Node<T> start;
 	protected int size;
 	
@@ -33,7 +33,6 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
     
     public void addFront(T value) {
     	Node<T> newNode = new Node<T>(value);
-    	Node<T> temp = start;
     	if(start == null){
             start = newNode;
             size++;
@@ -81,12 +80,12 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
     
     public void remove(T item) {
     	Node<T> temp = start, prev = null;
-    	if(temp!= null && temp.getData().compareTo(item) == 0) {
+    	if(temp!= null && temp.getData().equals(item)) {
     		start = temp.getNext();
     		size--;
     		return;
     	}
-    	while(temp != null && temp.getData().compareTo(item) != 0) {
+    	while(temp != null && !temp.getData().equals(item)) {
     		prev = temp;
     		temp = temp.getNext();
     	}
@@ -100,7 +99,7 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
     public boolean search(T item) {
     	Node<T> temp =start;
     	while(temp != null) {
-    		if((temp.getData()).compareTo(item) == 0)
+    		if((temp.getData()).equals(item))
     			return true;
     		else
     			temp = temp.getNext();
@@ -112,7 +111,7 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
     	int position = 1;
     	Node<T> temp = start;
     	while(temp != null) {
-    		if((temp.getData()).compareTo(item) == 0) {
+    		if((temp.getData()).equals(item)) {
     			position = position + 1;
     			return position;
     		}
@@ -146,18 +145,38 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
     
     public T pop(int position) {
     	Node<T> temp = start;
+    	Node<T> prev =null;
+    	int index = 0;
+    	if(start==null) return null;
     	if(position == 0) {
     		start = temp.getNext();
     		size--;
     		return temp.getData();
     	}
-    	for(int i=0; i< position; i++) {
+    	if(temp.getNext()==null) return temp.getData();
+    	while(temp.getNext() != null && index != position) {
+    		prev=temp;
     		temp = temp.getNext();
+    		index++;
     	}
-    	T removedData = temp.getNext().getData();
-    	temp.setNext(temp.getNext().getNext());
-    	size--;
+    	prev.setNext(temp.getNext());
+    	T removedData = temp.getData();
     	return removedData;
+    }
+    
+    public T getDataAtIndex(int index) {
+    	int currentPosition = 0;
+    	Node<T> temp = start;
+    	if(start == null)
+    		return null;
+    	if(temp.getNext()==null) return temp.getData();
+    	else {
+    		while(temp.getNext() != null && currentPosition != index) {
+    			temp = temp.getNext();
+    			currentPosition++;
+    		}
+    		return temp.getData();
+    	}
     }
     
     public void display() {
@@ -171,6 +190,17 @@ public class UnorderedLinkedList <T extends Comparable<T>>{
         }
 		
 	}
+    
+    public String displayElements() {
+		String string = "";
+		Node<T> temp = start;
+		while(temp.getNext() != null) {
+			string += temp.getData() + " ";
+			temp = temp.getNext();
+		}
+		return string;
+	}
+    
 }
 
 

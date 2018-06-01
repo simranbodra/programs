@@ -6,7 +6,7 @@ import com.bridgelabz.utils.Utility;
 public class OrderedNumberList {
 
 	public static void main(String[] args) {
-		OrderedLinkedList list = new OrderedLinkedList();
+		OrderedLinkedList<Integer> list = new OrderedLinkedList<Integer>();
 		String numbers = Utility.readListFile("numberList.text");
 		String[] stringArray = Utility.splitString(numbers);
 		Integer[] integerArray = Utility.toIntegerArray(stringArray);

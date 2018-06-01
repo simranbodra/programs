@@ -6,7 +6,7 @@ import com.bridgelabz.utils.Utility;
 public class UnorderedListWordSearch {
 
 	public static void main(String[] args) {
-		UnorderedLinkedList wordList = new UnorderedLinkedList();
+		UnorderedLinkedList<String> wordList = new UnorderedLinkedList<String>();
 		String words = Utility.readListFile("wordList.text");
 		String[] stringArray = Utility.splitString(words);
 		wordList = Utility.addWordsToList(stringArray);
