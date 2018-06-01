@@ -14,14 +14,37 @@ import com.bridgelabz.utils.Utility;
 public class SortSearchEfficiency {
 
 	public static void main(String[] args) {
-		int[] array = Utility.createIntegerArray();
-		Utility.integerBinarySearchChecker(array);
-		Utility.integerInsertionSort();
-		Utility.integerBubbleSort();
+		
+		//************************Integer Binary Search******************************************
+		Integer[] array = Utility.createIntegerObjectArray();
+		System.out.println("Enter the element to be searched:-");
+		Integer searchElement = Utility.integerInput();
+		Utility.binarySearchChecker(array, searchElement);
+		
+		//************************Integer Insertion Sort*****************************************
+		
+		Utility.insertionSort(array);
+		
+		//************************Integer Bubble Sort*****************************************
+		
+		Utility.bubbleSort(array);
+		
+		//*************************String Binary Search*******************************************
+		Utility.stringInput();
+		System.out.println("Enter String");
 		String string = Utility.stringInput();
-		Utility.stringBinarySearch(string);
-		Utility.stringInsertionSort(string);
-		Utility.stringBubbleSort(string);
+		String[] stringArray = Utility.splitString(string);
+		System.out.println("Enter the element to be searched:-");
+		String searchStringElement = Utility.stringInput();
+		Utility.binarySearchChecker(stringArray, searchStringElement);
+		
+		//************************String Insertion Sort*****************************************
+		
+		Utility.insertionSort(stringArray);
+		
+		//************************String Bubble Sort***********************************************
+		
+		Utility.bubbleSort(stringArray);
 		
 	}
 

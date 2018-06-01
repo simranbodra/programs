@@ -1,6 +1,6 @@
 /******************************************************************************
  *  
- *  Purpose: to sort the word from the wordlist file using Bubble sort
+ *  Purpose: to sort the integer array
  *
  *  @author  Simran Bodra
  *  @version 1.0
@@ -14,7 +14,8 @@ import com.bridgelabz.utils.Utility;
 public class IntegerBubbleSort {
 
 	public static void main(String[] args) {
-		Utility.integerBubbleSort();
+		Integer[] array = Utility.createIntegerObjectArray();
+		Utility.bubbleSort(array);
 	}
 
 }

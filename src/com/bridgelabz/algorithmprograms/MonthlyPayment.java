@@ -17,7 +17,7 @@ public class MonthlyPayment {
 		double principle = Double.parseDouble(args[0]);
 		int year = Integer.parseInt(args[1]);
 		double rate = Double.parseDouble(args[2]);
-		System.out.println(Utility.getMonthlyPayment(principle,year,rate) + "is needed to make over " +year+" years to pay off a args[0] " +principle+ "principal loan amount at " +rate+ " percent interest compounded monthly.");
+		System.out.println("Monthly payment of " + Utility.getMonthlyPayment(principle,year,rate) + " rs is needed ");
 	}
 
 }

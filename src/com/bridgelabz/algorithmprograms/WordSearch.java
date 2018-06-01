@@ -14,8 +14,9 @@ import com.bridgelabz.utils.Utility;
 public class WordSearch {
 
 	public static void main(String[] args) {
+		String[] wordList = Utility.readWordListFile();
 		System.out.println("Enter the words to be searched:-");
 		String word = Utility.stringInput();
-		Utility.searchWord(word);
+		Utility.searchWord(wordList, word);
 	}
 }

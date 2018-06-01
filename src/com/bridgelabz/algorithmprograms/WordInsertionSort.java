@@ -14,8 +14,10 @@ import com.bridgelabz.utils.Utility;
 public class WordInsertionSort {
 
 	public static void main(String[] args) {
-		String[] words = Utility.readWordListFile();
-		Utility.wordInsertionSort(words);
+		System.out.println("Enter String");
+		String string = Utility.stringInput();
+		String[] stringArray = Utility.splitString(string);
+		Utility.insertionSort(stringArray);
 	}
 
 }
