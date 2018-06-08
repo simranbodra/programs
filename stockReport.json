@@ -1,0 +1,17 @@
+[
+	{
+		"Share Price": 4000,
+		"NoOfShare": 4,
+		"Name": "BridgeLabz"
+	},
+	{
+		"Share Price": 3000,
+		"NoOfShare": 3,
+		"Name": "Capgemini"
+	},
+	{
+		"Share Price": 3500,
+		"NoOfShare": 3,
+		"Name": "TCS"
+	}
+]

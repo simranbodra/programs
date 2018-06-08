@@ -1,9 +1,48 @@
 {
-[
-	{
-		"Name": "Basmati",
+"Rice":[ 
+		{
+			"Name": "Rice1",
 			"Weight":50,
-			"Price": 200
+			"Price": 20
+		},
+		{
+			"Name": "Rice2",
+			"Weight": 20,
+			"Price": 13
+		},
+		{
+			"Name": "Rice3",
+			"Weight": 45,
+			"Price": 45
 		}
-	]
+	],
+"Pulse":[
+		{
+			"Name": "Pulse1",
+			"Weight": 45,
+			"Price": 45
+		},
+		{
+			"Name": "Pulse2",
+			"Weight": 50,
+			"Price": 20
+		}
+	],
+"Wheat":[
+		{
+			"Name": "Wheat1",
+			"Weight": 20,
+			"Price": 13
+		},
+		{
+			"Name": "Wheat2",
+			"Weight": 35,
+			"Price": 65
+		},
+		{
+			"Name": "Wheat3",
+			"Weight": 78,
+			"Price": 78
+	}
+]	
 }

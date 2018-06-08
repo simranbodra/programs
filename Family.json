@@ -1,0 +1,24 @@
+{
+	"addressBook": [
+		{
+			"firstName": "Kamal",
+			"lastName": "Bodra",
+			"address": "Ranchi",
+			"city": "Ranchi",
+			"state": null,
+			"zipCode": "831001",
+			"phoneNumber": "9718361640"
+		},
+		{
+			"firstName": "Simran",
+			"lastName": "Bodra",
+			"address": "Sakchi",
+			"city": "Jamshedpur",
+			"state": "Jharkhand",
+			"zipCode": "831001",
+			"phoneNumber": "7751886716"
+		}
+	],
+	"addressBookName": "Family",
+	"count": 2
+}

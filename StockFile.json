@@ -1,0 +1,17 @@
+[
+	{
+		"stockName": "airtel",
+		"noOfShare": 400,
+		"sharePrice": 40
+	},
+	{
+		"stockName": "reliance",
+		"noOfShare": 670,
+		"sharePrice": 36
+	},
+	{
+		"stockName": "idea",
+		"noOfShare": 789,
+		"sharePrice": 50
+	}
+]

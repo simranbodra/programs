@@ -9,10 +9,22 @@
  ******************************************************************************/
 package com.bridgelabz.utils;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import com.bridgelabz.datastructures.UnorderedLinkedList;
 
@@ -52,27 +64,48 @@ public class Utility {
 			return integerInput();
 		}
 	}
-
+	
+	/****************************************************************************************
+	 * Function to take replace a string using regular expression
+	 * 
+	 * @param message stores the string to be manipulated
+	 ****************************************************************************************/
 	public static void messageReplace(String message) {
+
+		Date date = new Date();
+		DateFormat sysDate = new SimpleDateFormat("dd/mm/yyyy");
+		String systemDate = sysDate.format(date);
 		String replacedMessage = "";
 		Pattern namePattern = Pattern.compile(REGEX_NAME);
 		Pattern fullNamePattern = Pattern.compile(REGEX_FULLNAME);
 		Pattern mobileNumberPattern = Pattern.compile(REGEX_MOBILE_NUMBER);
 		Pattern datePattern = Pattern.compile(REGEX_DATE);
 		Matcher mname = namePattern.matcher(message);
-		replacedMessage = mname.replaceAll("Simran");
+		System.out.println("Enter first name:-");
+		String firstName = stringInput();
+		replacedMessage = mname.replaceAll(firstName);
+		
+		System.out.println("Enter last name:-");
+		String lastName = stringInput();
 
 		Matcher fullName = fullNamePattern.matcher(replacedMessage);
-		replacedMessage = fullName.replaceAll("Simran Bodra");
+		replacedMessage = fullName.replaceAll(firstName+ " " + lastName);
 
+		System.out.println("Enter mobile number:-");
+		String number = stringInput();
 		Matcher mobileNumber = mobileNumberPattern.matcher(replacedMessage);
-		replacedMessage = mobileNumber.replaceAll("7751886716");
+		replacedMessage = mobileNumber.replaceAll(number);
 		
-		Matcher date = datePattern.matcher(replacedMessage);
-		replacedMessage = date.replaceAll("31/05/2018");
+		Matcher dateMatcher = datePattern.matcher(replacedMessage);
+		replacedMessage = dateMatcher.replaceAll(systemDate);
 		System.out.println(replacedMessage);
 	}
-
+	
+	/****************************************************************************************
+	 * Function to print the arranged deck of cards
+	 * 
+	 * @return String two dimensional array
+	 ****************************************************************************************/
 	public static String[][] printDeckOfCards() {
 		String[] cardsType = new String[4];
 		String[] cards = {"King", "Queen", "Joker", "10", "9", "8", "7", "6", "5", "4","3", "2", "Ace"};
@@ -96,7 +129,12 @@ public class Utility {
 		return deckOfCards;
 		
 	}
-
+	
+	/****************************************************************************************
+	 * Function to shuffle cards and distribute 9 cards to each 4 players
+	 * 
+	 * @param deckOfCards which contains all the cards in arranged order
+	 ****************************************************************************************/
 	public static void shuffleCards(String[][] deckOfCards) {
 		UnorderedLinkedList<String> cardsList = new UnorderedLinkedList<>();
 		UnorderedLinkedList<String> suffledCards = new UnorderedLinkedList<>();
@@ -109,14 +147,14 @@ public class Utility {
 				cardsList.add(deckOfCards[i][j]);
 			}
 		}
-		while(suffledCards.size() < 38) {
+		while(suffledCards.size() < 36) {
 			index = random.nextInt(cardsList.size());	
 			suffledCards.add(cardsList.pop(index));
 			suffledCount++;
 		}
 		//System.out.println(suffledCards.size());
 		//suffledCards.display();
-		//System.out.println(suffledCount);
+		System.out.println(suffledCount);
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<9; j++) {
 			suffledCardsArray[i][j] = suffledCards.pop();
@@ -130,6 +168,21 @@ public class Utility {
 			}
 			System.out.println();
 		}
+	}
+	
+	/****************************************************************************************
+	 * Function to write java object to json file
+	 * 
+	 * @param fileName which stores the file location
+	 * @param javaObject which is to be written in a json file
+	 * @throws IOException 
+	 ****************************************************************************************/
+	public static void javaToJsonObject(String fileName, Object javaObject) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(new File(fileName), javaObject);
+		//String inventoryInformation = mapper.defaultPrettyPrintingWriter().writeValueAsString(javaObject);
+		//System.out.println(inventoryInformation);
+		System.out.println("json file created");
 	}
 	
 }

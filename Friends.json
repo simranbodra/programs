@@ -1,0 +1,15 @@
+{
+	"addressBook": [
+		{
+			"firstName": "Pratik",
+			"lastName": "Prakash",
+			"address": "Patna",
+			"city": "Patna",
+			"state": "Bihar",
+			"zipCode": "789456",
+			"phoneNumber": "997456123"
+		}
+	],
+	"addressBookName": "Friends",
+	"count": 1
+}

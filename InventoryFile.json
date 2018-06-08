@@ -1,0 +1,21 @@
+{
+	"Pulses": [
+		{
+			"name": "Pulses1",
+			"weight": 45,
+			"price": 56
+		}
+	],
+	"Rice": [
+		{
+			"name": "Rice1",
+			"weight": 45,
+			"price": 67
+		},
+		{
+			"name": "Rice2",
+			"weight": 56,
+			"price": 78
+		}
+	]
+}
