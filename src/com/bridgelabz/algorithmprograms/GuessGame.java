@@ -6,7 +6,8 @@ public class GuessGame {
 
 	public static void main(String[] args) {
 		int range = Integer.parseInt(args[0]);
-		Utility.getGuessNumber(range);
+		System.out.println("Think of a number between 0 to " + (range - 1));
+		Utility.guessedNumber(0, range-1);
 	}
 
 }

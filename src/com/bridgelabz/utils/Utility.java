@@ -269,6 +269,7 @@ public class Utility {
 	 ******************************************************************************/
 	public static <T extends Comparable <T>>int binarySearch(T[] array, T searchElement, int start, int end) {
 		if(end >= start) {
+			//T newSearchElement = searchElement.
 			int mid = (start + end)/2;
 			if(array[mid].compareTo(searchElement) == 0)
 			return mid;
@@ -329,23 +330,6 @@ public class Utility {
 			System.out.println(n);
 	}
 
-	/******************************************************************************
-	 * Function to guess the number which the user has thought within the range
-	 * 
-	 * @param range to think of a number within it
-	 ******************************************************************************/
-	public static void getGuessNumber(int range) {
-		int[] array = new int[range+1];
-		for(int i=0;i<=range;i++) {
-			array[i] = i;
-		}
-		int number = guessedNumber(array, 0,array.length-1);
-		if(number == -1) {
-			System.out.println("Number out of range");
-		}
-		else
-			System.out.println("Number is " + number);
-	}
 	
 	/******************************************************************************
 	 * Function to predict the number using binary search  
@@ -355,24 +339,26 @@ public class Utility {
 	 * @param end contains the last index of the array
 	 * @return the number which is to be searched
 	 ******************************************************************************/
-	public static int guessedNumber(int[] array, int start, int end) {
-		int mid = (start + end)/2;
-		if(end >= start) {
-			System.out.println("Is the number in between " + array[start] + " and " + array[mid]);
+	public static void guessedNumber(int start, int end) {
+		int mid = start + (end - start)/2;
+		if(start < end) {
+			System.out.println("Is the number in between " + start + " and " + mid + "  or " + (mid+1) + " and " + end);
 			System.out.println("If yes, enter 1 ");
 			System.out.println("If no enter 2");
 			System.out.println("Enter your choice:-");
 			int answer = integerInput();
-			if(answer == 2) {
-				guessedNumber(array, start, mid);
+			if(answer == 1) {
+				guessedNumber(start, mid);
 			}
 		
 			else {
-				guessedNumber(array, mid + 1, end );
+				guessedNumber(mid + 1, end );
 			}
 			
 		}
-		return -1;
+		else {
+			System.out.println("The number is " +start);
+		}
 	}
 	
 	/******************************************************************************
@@ -387,7 +373,7 @@ public class Utility {
 			while(input.hasNextLine()) {
 				String words = input.nextLine();
 				array = words.split(";");
-				input.close();
+				//input.close();
 			}
 		}
 		catch(Exception e) {
@@ -421,7 +407,7 @@ public class Utility {
 			long startTime = startTimer();
 			String[] array = wordMergeSort(charArray,0,charArray.length-1);
 			long stopTime = stopTimer();
-			System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+			System.out.println("Time taken for sorting the array by using merge sort technique " + (stopTime-startTime) + " nano seconds");
 			System.out.println("Sorted array :-");
 			for(String n : array)
 				System.out.println(n);
@@ -430,7 +416,7 @@ public class Utility {
 			long startTime = startTimer();
 			String[] array = wordMergeSort(stringArray,0,stringArray.length-1);
 			long stopTime = stopTimer();
-			System.out.println("Time taken for sorting the array by using insertion sort technique " + (stopTime-startTime) + " nano seconds");
+			System.out.println("Time taken for sorting the array by using merge sort technique " + (stopTime-startTime) + " nano seconds");
 			System.out.println("Sorted array :-");
 			for(String n : array)
 				System.out.println(n);
@@ -581,13 +567,13 @@ public class Utility {
 		case 1:
 			System.out.println("Enter temperature");
 			double fahrenheit = integerInput();
-			double celcius = (fahrenheit-32)*(5.0/9.0);
+			double celcius = (fahrenheit-32)*5/9;
 			System.out.println(fahrenheit + " Fahrenheit = " + celcius + " Celcius");
 			break;
 		case 2:
 			System.out.println("Enter temperature");
 			double celciusTemp = integerInput();
-			double fahrenheitTemp = celciusTemp*(9.0/5.0)+32;
+			double fahrenheitTemp = celciusTemp*9/5+32;
 			System.out.println(celciusTemp + " Celcius = " + fahrenheitTemp + " Fahrenheit");
 			break;
 		default :
@@ -640,6 +626,9 @@ public class Utility {
 			number = number/2;
 			binaryValue.append(binary);
 		}
+		while(binaryValue.length()<8) {
+			binaryValue.append("0");
+			}
 		return binaryValue.reverse().toString();
 	}
 	
@@ -655,14 +644,6 @@ public class Utility {
 		String nibble1 = "";
 		String nibble2 = "";
 		String nibble = "";
-		if(octate.length()<8) {
-			octate = octate.reverse();
-			while(octate.length() <= 8) {
-				octate.append("0");
-			}
-		}
-		System.out.println(octate);
-		octate = octate.reverse();
 		stringOctate = octate.toString();
 		for(int i=0;i<4;i++)
 			nibble1 += stringOctate.charAt(i);
