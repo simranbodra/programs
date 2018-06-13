@@ -1,0 +1,16 @@
+[
+	{
+		"name": "Simran Bodra",
+		"id": 0,
+		"specialization": "Physician",
+		"availability": "Morning",
+		"patientCount": 5
+	},
+	{
+		"name": "Aditya Sen",
+		"id": 1,
+		"specialization": "Cardiologist",
+		"availability": "Evening",
+		"patientCount": 3
+	}
+]

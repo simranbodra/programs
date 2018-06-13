@@ -1,0 +1,50 @@
+[
+	{
+		"name": "Pratik Prakash",
+		"id": 0,
+		"mobileNumber": 7894561230,
+		"age": 52
+	},
+	{
+		"name": "Kamal",
+		"id": 1,
+		"mobileNumber": 9431566487,
+		"age": 34
+	},
+	{
+		"name": "Simi",
+		"id": 2,
+		"mobileNumber": 9939620336,
+		"age": 22
+	},
+	{
+		"name": "Shivi",
+		"id": 3,
+		"mobileNumber": 9939620336,
+		"age": 24
+	},
+	{
+		"name": "Abhi",
+		"id": 4,
+		"mobileNumber": 7893214560,
+		"age": 28
+	},
+	{
+		"name": "Dev Singh",
+		"id": 5,
+		"mobileNumber": 8975642310,
+		"age": 23
+	},
+	{
+		"name": "abc",
+		"id": 6,
+		"mobileNumber": 3210654987,
+		"age": 89
+	},
+	{
+		"name": "Shruti",
+		"id": 7,
+		"mobileNumber": 7894561230,
+		"age": 23
+	}
+]
