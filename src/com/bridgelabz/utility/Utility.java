@@ -99,7 +99,7 @@ public class Utility {
         }
         catch (IOException e)
         {
-            System.out.println("Doctor's list is empty... first add some data");
+            System.out.println("Stock's list is empty... first add some data");
             e.printStackTrace();
         }
         return files;
@@ -121,7 +121,7 @@ public class Utility {
         }
         catch (IOException e)
         {
-            System.out.println("Doctor's list is empty... first add some data");
+            System.out.println("Customer's list is empty... first add some data");
             e.printStackTrace();
         }
         return files;
@@ -143,7 +143,7 @@ public class Utility {
         }
         catch (IOException e)
         {
-            System.out.println("Doctor's list is empty... first add some data");
+            System.out.println("Transaction's list is empty... first add some data");
             e.printStackTrace();
         }
         return files;

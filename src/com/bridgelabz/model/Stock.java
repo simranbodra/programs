@@ -3,6 +3,7 @@ package com.bridgelabz.model;
 public class Stock {
 	
 	private String companySymbol;
+	private int id;
 	private int noOfShares;
 	private int sharePrice;
 	
@@ -11,6 +12,12 @@ public class Stock {
 	}
 	public void setCompanySymbol(String companySymbol) {
 		this.companySymbol = companySymbol;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getNoOfShares() {
 		return noOfShares;
@@ -24,9 +31,10 @@ public class Stock {
 	public void setSharePrice(int sharePrice) {
 		this.sharePrice = sharePrice;
 	}
+	
 	@Override
 	public String toString() {
-		return "Stock [companySymbol=" + companySymbol + ", noOfShares=" + noOfShares + ", sharePrice=" + sharePrice
-				+ "]";
+		return "Stock [companySymbol=" + companySymbol + ", id=" + id + ", noOfShares=" + noOfShares + ", sharePrice="
+				+ sharePrice + "]";
 	}
 }

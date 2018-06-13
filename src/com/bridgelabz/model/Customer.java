@@ -3,6 +3,7 @@ package com.bridgelabz.model;
 public class Customer {
 
 	private String name;
+	private int id;
 	private int noOfShare;
 	private int amount;
 	
@@ -11,6 +12,12 @@ public class Customer {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getNoOfShare() {
 		return noOfShare;
@@ -26,7 +33,7 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", noOfShare=" + noOfShare + ", amount=" + amount + "]";
+		return "Customer [name=" + name + ", id=" + id + ", noOfShare=" + noOfShare + ", amount=" + amount + "]";
 	}
 	
 }
