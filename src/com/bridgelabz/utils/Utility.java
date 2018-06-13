@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import com.bridgelabz.datastructures.Deque;
 import com.bridgelabz.datastructures.HashSet;
-import com.bridgelabz.datastructures.Node;
 import com.bridgelabz.datastructures.OrderedLinkedList;
 import com.bridgelabz.datastructures.Queue;
 import com.bridgelabz.datastructures.Stack;
@@ -56,7 +55,6 @@ public class Utility {
 			Scanner input = new Scanner(new File(fileName));
 			while(input.hasNextLine()) {
 				words = input.nextLine();
-				input.close();
 			}
 		}
 		catch(Exception e) {
@@ -175,7 +173,7 @@ public class Utility {
 					popCount++;
 				}
 			}
-		if(parenthesisStack.isEmpty() && pushCount == popCount) {
+		if(parenthesisStack.size() == 0 && pushCount == popCount) {
 			return true;
 		}
 		else
@@ -197,7 +195,7 @@ public class Utility {
 	}
 
 	public static <T>void cashCounter(Queue<T> people) {
-		int amount = (people.size()+1)*10000;
+		int amount = 1000000;
 		while(people.size() > 0) {
 			System.out.println("Enter 1 for Cash Deposit");
 			System.out.println("Enter 2 for cash withdraw");
@@ -207,19 +205,26 @@ public class Utility {
 				System.out.println("Enter the amount to deposit:-");
 				int depositAmount = integerInput();
 				amount = amount + depositAmount;
+				System.out.println("Current money in the bank:-" + amount);
 				people.dequeue();
+				System.out.println("People in the queue:- " + people.size());
 				break;
 			
 			case 2:
-				System.out.println("At max 10000 rs can be withdrawn at a time");
 				System.out.println("Enter the amount to be withdrawn:-");
 				int withdrawAmount = integerInput();
-				while(withdrawAmount > 10000) {
-					System.out.println("more than 10000 rs cannot be withdrawn at a time");
-					withdrawAmount = integerInput();
+				if(withdrawAmount > 1000000) {
+					System.out.println("Not enought money in the bank");
+					System.out.println("Current money in the bank:-" + amount);
+					people.dequeue();
+					System.out.println("People in the queue:- " + people.size());
 				}
-				amount = amount - withdrawAmount;
-				people.dequeue();
+				else {
+					amount = amount - withdrawAmount;
+					System.out.println("Current money in the bank:-" + amount);
+					people.dequeue();
+					System.out.println("People in the queue:- " + people.size());
+				}
 				break;
 			default:
 				System.out.println("Invalid choice");
@@ -350,7 +355,7 @@ public class Utility {
 			else
 				return 28;
 		}
-		else if(month == 4 || month == 6 || month == 9 | month == 11)
+		else if(month == 4 || month == 6 || month == 9 || month == 11)
 			return 30;
 		else
 			return 31;
@@ -394,29 +399,29 @@ public class Utility {
 	}
 	
 	/******************************************************************************
-	* Function to print the calender of the given month and the year
+	* Function to print the calendar of the given month and the year
 	* 
 	* @param dayCode which store from which week day is the month starting
 	* @param month to store the value of the month
 	* @param year to store the given year
 	******************************************************************************/
-	public static void printCalender(int dayCode, int month, int year) {
-		String[][] calenderArray = new String[7][7];
+	public static void printCalendar(int dayCode, int month, int year) {
+		String[][] calendarArray = new String[7][7];
 		int noOfDays = getNoOfDays(month, year);
 		System.out.println(getMonth(month));
 		System.out.println(year);
 		int date = 1;
-		calenderArray[0][0] = "Sun ";
-		calenderArray[0][1] = "mon ";
-		calenderArray[0][2] = "tue ";
-		calenderArray[0][3] = "wed ";
-		calenderArray[0][4] = "thu ";
-		calenderArray[0][5] = "fri ";
-		calenderArray[0][6] = "sat ";
+		calendarArray[0][0] = "Sun ";
+		calendarArray[0][1] = "Mon ";
+		calendarArray[0][2] = "Tue ";
+		calendarArray[0][3] = "Wed ";
+		calendarArray[0][4] = "Thu ";
+		calendarArray[0][5] = "Fri ";
+		calendarArray[0][6] = "Sat ";
 		for(int i=1; i<7; i++) {
 			for(int j=dayCode; j<7; j++) {
 				if(date <= noOfDays) {
-					calenderArray[i][j] = date + "";
+					calendarArray[i][j] = date + "";
 					date++;
 				}
 			}
@@ -424,16 +429,16 @@ public class Utility {
 		}
 		for(int i=0; i<=0; i++) {
 			for(int j=0; j<7; j++) {
-				System.out.print(calenderArray[i][j]);
+				System.out.print(calendarArray[i][j]);
 			}
 			System.out.println();
 		}
 		for(int i=1; i<7; i++) {
 			for(int j=0; j<7; j++) {
-				if(calenderArray[i][j] != null && calenderArray[i][j].length() == 1) 
-					System.out.print(" " + calenderArray[i][j] + "  ");
-				else if(calenderArray[i][j] != null)
-					System.out.print(" " + calenderArray[i][j] + " ");
+				if(calendarArray[i][j] != null && calendarArray[i][j].length() == 1) 
+					System.out.print(" " + calendarArray[i][j] + "  ");
+				else if(calendarArray[i][j] != null)
+					System.out.print(" " + calendarArray[i][j] + " ");
 				else
 					System.out.print("    ");
 			}
@@ -489,7 +494,10 @@ public class Utility {
 		int size=primeNumberSet.size();
 		for(int i=0; i<size; i++) {
 			UnorderedLinkedList<Integer> list = primeNumberSet.getDataAtIndex(i);
-			System.out.println(list.displayElements());
+			int listSize = list.size();
+			for(int j=0; j<listSize; j++) {
+				System.out.printf("%03d%n",(int)list.getDataAtIndex(j));
+			}
 		}
 	}
 	
@@ -551,55 +559,312 @@ public class Utility {
 		UnorderedLinkedList<UnorderedLinkedList<String>> anagramSet = new UnorderedLinkedList<>();
 		int lowerRange = 0;
 		int upperRange = 100;
-		//UnorderedLinkedList<UnorderedLinkedList<String>> notAnagramSet = new UnorderedLinkedList<>();
+		UnorderedLinkedList<UnorderedLinkedList<String>> notAnagramSet = new UnorderedLinkedList<>();
 		for(int i=0; i < 10; i++) {
 			UnorderedLinkedList<String> anagramList = new UnorderedLinkedList<>();
-			//UnorderedLinkedList<String> notAnagramList = new UnorderedLinkedList<>();
+			UnorderedLinkedList<String> notAnagramList = new UnorderedLinkedList<>();
 			for(int j=lowerRange; j<= upperRange; j++) {
-				if(j > 10) {
 				if(primeChecker(j)) {
-					for(int k=j; k<upperRange; k++)
+					for(int k=0; k<=1000; k++)
 						if(primeChecker(k)) {
-							if(checkAnagram(j+"", k+""))
-								anagramList.add("["+j+","+k+"]");
-						}
-				}
-			}
+							if(checkAnagram(j+"", k+"")) {
+								if(j != k) {
+									anagramList.add("["+j+","+k+"]");
+									//System.out.println(j + " " + k);
+								}
+								
+							}
+							else
+								notAnagramList.add("["+j+","+k+"]");
+							}
+					}
 				}
 			anagramSet.add(anagramList);
+			notAnagramSet.add(notAnagramList);
 				lowerRange = lowerRange + 100;
 				upperRange = upperRange + 100;
 		}
-		int size=anagramSet.size();
-		for(int i=0; i<size; i++) {
+		System.out.println("Anagram Pairs:-");
+		int anagramSize=anagramSet.size();
+		for(int i=0; i<anagramSize -1; i++) {
 			UnorderedLinkedList<String> list = anagramSet.getDataAtIndex(i);
+			System.out.println(list.displayElements());
+		}
+		System.out.println();
+		System.out.println("Non Anagram Pairs");
+		int notAnagramSize=anagramSet.size();
+		for(int i=0; i<notAnagramSize; i++) {
+			UnorderedLinkedList<String> list = notAnagramSet.getDataAtIndex(i);
 			System.out.println(list.displayElements());
 		}
 	}
 	
-	public static void getAnagram() {
-		UnorderedLinkedList<UnorderedLinkedList<Integer>> primeNumberSet = addPrimeNumbersToSet();
-		//System.out.println(primeNumberSet.size());
-		UnorderedLinkedList<UnorderedLinkedList<String>> anagramSet = new UnorderedLinkedList<>();
-		int size=primeNumberSet.size();
-		for(int i=0; i<size; i++) {
-			UnorderedLinkedList<Integer> list = primeNumberSet.getDataAtIndex(i);
-			UnorderedLinkedList<String> anagramList = new UnorderedLinkedList<>();
-			for(int j=0; j<list.size()-1; j++) {
-				String string1 = list.getDataAtIndex(j) + "";
-				for(int k=j+1; k<list.size(); k++) {
-					String string2 = list.getDataAtIndex(k) + "";
-					if(checkAnagram(string1, string2))
-						anagramList.add("["+string1+","+string2+"]");
+	/******************************************************************************
+	 * Function to get Anagram pairs of number using Stack
+	 * 
+	 * @return 2D array list of the prime numbers
+	 ******************************************************************************/
+	public static void getAnagramPairsStack() {
+		Stack<Stack<String>> anagramSet = new Stack<>();
+		int lowerRange = 0;
+		int upperRange = 100;
+		Stack<Stack<String>> notAnagramSet = new Stack<>();
+		for(int i=0; i < 10; i++) {
+			Stack<String> anagramList = new Stack<>();
+			Stack<String> notAnagramList = new Stack<>();
+			for(int j=lowerRange; j<= upperRange; j++) {
+				if(j > 10 && primeChecker(j)) {
+					for(int k=0; k<=1000; k++)
+					if(primeChecker(k)) {
+						if(checkAnagram(j+"", k+"")) {
+							if(j != k) {
+								anagramList.push("["+j+","+k+"]");
+								System.out.println(j + " " + k);
+							}
+						}
+						else
+							notAnagramList.push("["+j+","+k+"]");
+						}
 				}
 			}
+			anagramSet.push(anagramList);
+			notAnagramSet.push(notAnagramList);
+				lowerRange = lowerRange + 100;
+				upperRange = upperRange + 100;
 		}
+		System.out.println("Anagram Pairs:-");
 		int anagramSize=anagramSet.size();
-		System.out.println(anagramSize);
 		for(int i=0; i<anagramSize; i++) {
-			UnorderedLinkedList<String> list = anagramSet.getDataAtIndex(i);
-			System.out.println(list.displayElements());
+			Stack<String> list = anagramSet.pop();
+			int size = list.size();
+			for(int j=0; j<size; j++) {
+				//System.out.print(list.pop() + " ");
+			}
+			System.out.println();
 		}
+		System.out.println();
+		System.out.println("Non Anagram Pairs:-");
+		int notAnagramSize=notAnagramSet.size();
+		for(int i=0; i<notAnagramSize; i++) {
+			Stack<String> list = notAnagramSet.pop();
+			int size = list.size();
+			for(int j=0; j<size; j++) {
+				//System.out.print(list.pop() + " ");
+			}
+			System.out.println();
+		}
+	}	
+	
+	/******************************************************************************
+	 * Function to get Anagram pairs of number using Queue
+	 * 
+	 * @return 2D array list of the prime numbers
+	 ******************************************************************************/
+	public static void getAnagramPairsQueue() {
+		Queue<Queue<String>> anagramSet = new Queue<>();
+		int lowerRange = 0;
+		int upperRange = 100;
+		Queue<Queue<String>> notAnagramSet = new Queue<>();
+		for(int i=0; i < 10; i++) {
+			Queue<String> anagramList = new Queue<>();
+			Queue<String> notAnagramList = new Queue<>();
+			for(int j=lowerRange; j<= upperRange; j++) {
+				if(j > 10 && primeChecker(j)) {
+					for(int k=j; k<upperRange; k++)
+						if(primeChecker(k)) {
+							if(checkAnagram(j+"", k+""))
+								anagramList.enqueue("["+j+","+k+"]");
+							else
+								notAnagramList.enqueue("["+j+","+k+"]");
+						}
+					}
+			}
+			anagramSet.enqueue(anagramList);
+			notAnagramSet.enqueue(notAnagramList);
+				lowerRange = lowerRange + 100;
+				upperRange = upperRange + 100;
+		}
+		System.out.println("Anagram Pairs:-");
+		int anagramSize=anagramSet.size();
+		for(int i=0; i<anagramSize; i++) {
+			Queue<String> list = anagramSet.dequeue();
+			int size = list.size();
+			for(int j=0; j<size; j++) {
+				System.out.print(list.dequeue() + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println("Non Anagram Pairs:-");
+		int notAnagramSize=notAnagramSet.size();
+		for(int i=0; i<notAnagramSize; i++) {
+			Queue<String> list = notAnagramSet.dequeue();
+			int size = list.size();
+			for(int j=0; j<size; j++) {
+				System.out.print(list.dequeue() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	/******************************************************************************
+	* Function to print the calender of the given month and the year using Queue
+	* 
+	* @param dayCode which store from which week day is the month starting
+	* @param month to store the value of the month
+	* @param year to store the given year
+	******************************************************************************/
+	public static void printCalenderQueue(int dayCode, int month, int year) {
+		Queue<Queue<String>>calendarQueue = new Queue<>();
+		String[] weekDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+		int noOfDays = getNoOfDays(month, year);
+		System.out.println(getMonth(month));
+		System.out.println(year);
+		int date = 1;
+		for(int i=0; i<7; i++) {
+			if(date <= noOfDays) {
+				Queue<String> dateList = new Queue<>();
+				if(i==0) {
+					for(int k=0; k<7; k++) {
+						dateList.enqueue(weekDays[k]);
+					}
+				}
+				else {
+					if(i == 1) {
+						for(int l=0; l<7; l++) {
+							if(l < dayCode) {
+								dateList.enqueue("   ");
+							}
+							else {
+								dateList.enqueue(" " + date + " ");
+								date++;
+							}
+						}	
+					}
+					else {
+						for(int j=0; j<7; j++) {
+							if(date < 10) {
+								dateList.enqueue(" " + date + " ");
+								date++;
+							}
+							else {
+								if(date <= noOfDays) {
+									dateList.enqueue(date + " ");
+									date++;
+								}
+							}
+						}
+					}
+				}
+				calendarQueue.enqueue(dateList);
+			}
+		}
+		int size=calendarQueue.size();
+		for(int i=0; i<size; i++) {
+			Queue<String> list = calendarQueue.dequeue();
+			int s = list.size();
+			for(int j=0; j<s; j++) {
+				System.out.print(list.dequeue() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	/******************************************************************************
+	* Function to print the calendar of the given month and the year using Stack
+	* 
+	* @param dayCode which store from which week day is the month starting
+	* @param month to store the value of the month
+	* @param year to store the given year
+	******************************************************************************/
+	public static void printCalenderStack(int dayCode, int month, int year) {
+		Stack<Stack<String>> reverseCalendar = new Stack<>();
+		Stack<Stack<String>> calendar = new Stack<>();
+		String[] weekDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+		int noOfDays = getNoOfDays(month, year);
+		System.out.println(getMonth(month));
+		System.out.println(year);
+		int date = 1;
+		for(int i=0; i<7; i++) {
+			if(date <= noOfDays) {
+				Stack<String> dateList = new Stack<>();
+				if(i==0) {
+					for(int k=0; k<7; k++) {
+						dateList.push(weekDays[k]);
+					}
+				}
+				else {
+					if(i == 1) {
+						for(int l=0; l<7; l++) {
+							if(l < dayCode) {
+								dateList.push("   ");
+							}
+							else {
+								dateList.push(" " + date + " ");
+								date++;
+							}
+						}	
+					}
+					else {
+						for(int j=0; j<7; j++) {
+							if(date < 10) {
+								dateList.push(" " + date + " ");
+								date++;
+							}
+							else {
+								if(date <= noOfDays) {
+									dateList.push(date + " ");
+									date++;
+								}
+							}
+						}
+					}
+				}
+				reverseCalendar.push(dateList);
+			}
+		}
+		int reverseSize= reverseCalendar.size();
+		for(int i=0; i<reverseSize; i++) {
+			Stack<String> list = reverseCalendar.pop();
+			int s = list.size();
+			Stack<String> dateStack = new Stack<>();
+			for(int j=0; j<s; j++) {
+				dateStack.push(list.pop());
+			}
+			calendar.push(dateStack);
+		}
+		int size = calendar.size();
+		for(int i=0; i<size; i++) {
+			Stack<String> list = calendar.pop();
+			int s = list.size();
+			for(int j=0; j<s; j++) {
+				System.out.print(list.pop() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	/******************************************************************************
+	* Function to find the factorial of the number
+	* 
+	* @param number of elements
+	******************************************************************************/
+	public static int factorial(int number) {
+		if(number == 1)
+			return 1;
+		else 
+			return number*factorial(number -1);
+	}
+
+	/******************************************************************************
+	* Function to print the no. of possible binary trees
+	* 
+	* @param number of elements
+	******************************************************************************/
+	public static long getNoOfPossibleBinaryTrees(int noOfNodes) {
+		long possibleTrees = 0;
+		possibleTrees = factorial(2*noOfNodes)/(factorial(noOfNodes+1)*(factorial(noOfNodes)));
+		return possibleTrees;
 	}
 	
 }

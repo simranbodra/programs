@@ -147,13 +147,17 @@ public class UnorderedLinkedList <T>{
     	Node<T> temp = start;
     	Node<T> prev =null;
     	int index = 0;
-    	if(start==null) return null;
+    	if(start==null) 
+    		return null;
+    	
     	if(position == 0) {
     		start = temp.getNext();
     		size--;
     		return temp.getData();
     	}
-    	if(temp.getNext()==null) return temp.getData();
+    	//if(temp.getNext()==null) 
+    		//return temp.getData();
+    	
     	while(temp.getNext() != null && index != position) {
     		prev=temp;
     		temp = temp.getNext();

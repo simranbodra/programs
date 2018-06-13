@@ -2,58 +2,37 @@ package com.bridgelabz.datastructures;
 
 
 public class Stack<T> {
-	protected Node<T> start;
-	protected int size;
-	
+	private UnorderedLinkedList<T> list;
 	public Stack() {
-		start = null;
-		size = 0;
+		list = new UnorderedLinkedList<T>();
 	}
 	
 	public boolean isEmpty() {
-		return start == null;
+		return list.isEmpty();
 	}
 	
 	public int size() {
-		return size;
+		return list.size();
 	}
 	
 	public void push(T item) {
-		Node<T> newNode = new Node<T>(item);
-		if(start == null) {
-			start = newNode;
-		}
-		else {
-			newNode.setNext(start);
-			start = newNode;
-		}
+		list.append(item);
 	}
 	
 	public T pop() {
-		if(start == null) {
-			return null;
-		}
-		Node<T> temp = start;
-		start = start.getNext();
-		return temp.getData();
+		T item = list.pop();
+		return item;
 	}
 	
 	public T peek() {
-		if(start == null) {
+		if(list.isEmpty()) {
 			System.out.println("Stack is empty");
 			return null;
 		}
-		return start.getData();
+		return list.getDataAtIndex(0);
 	}
 	
 	public void display() {
-    	Node<T> temp = start;
-        while(true){
-            if(temp == null){
-                break;
-            }
-            System.out.println(temp.getData());
-            temp = temp.getNext();
-        }
-    }
+		list.display();
+	}
 }
